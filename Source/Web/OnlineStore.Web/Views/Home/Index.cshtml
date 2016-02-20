@@ -1,8 +1,59 @@
-﻿@model OnlineStore.Web.ViewModels.Home.IndexViewModel
+﻿@model IEnumerable<OnlineStore.Web.ViewModels.Home.IndexViewModel>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "CoolStore Collections";
 }
-<h1>Вицове</h1>
+
+<section id="slider">
+    <ul>
+        <li><a href="#" class="fa fa-chevron-left slider-arrow" data-dir="prev"></a></li>
+        <li class="slider-container" style="background-image: url('@Url.Content("~/Content/Images/slide1.jpg")')">
+            <div></div>
+            <div>
+                <h3>Some Text 1</h3>
+                <a href="#" class="slider-button">See more</a>
+            </div>
+        </li>
+        <li class="slider-container hidden" style="background-image: url('@Url.Content("~/Content/Images/slide2.jpg")')">
+            <div></div>
+            <div>
+                <h3>Some Text 2</h3>
+                <a href="#" class="slider-button">See more</a>
+            </div>
+        </li>
+        <li class="slider-container hidden" style="background-image: url('@Url.Content("~/Content/Images/slide3.jpg")')">
+            <div></div>
+            <div>
+                <h3>Some Text 3</h3>
+                <a href="#" class="slider-button">See more</a>
+            </div>
+        </li>
+        <li><a href="#" class="fa fa-chevron-right slider-arrow" data-dir="next"></a></li>
+    </ul>
+</section>
+
+<section id="collections">
+    <h2 class="section-title">Нови колекции</h2>
+    <div>
+        @foreach (var collection in Model)
+        {
+        <a href="@Url.Action(null, "collection", new { acronym = collection.Acronym })" class="collection-box" style="background-image: url('@collection.Image')">
+            <strong>Отстъпки до -@collection.Discount.ToString("#")%</strong>
+            <span><b>@collection.Name</b> - @collection.ShortDescription</span>
+        </a>
+        }
+    </div>
+</section>
+
+<section id="brands">
+    <ul>
+        @for (int i = 1; i <= 8; i++)
+        { 
+            <li><img src="@Url.Content("~/Content/Images/brand" + i + ".png")"></li>
+        }
+    </ul>
+</section>
+
+@*<h1>Вицове</h1>
 <div class="row">
     @foreach (var joke in Model.Jokes)
     {
@@ -22,4 +73,4 @@
             @category.Name
         </div>
     }
-</div>
+</div>*@

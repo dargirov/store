@@ -11,32 +11,46 @@
 
     public class HomeController : BaseController
     {
-        private readonly IJokesService jokes;
-        private readonly ICategoriesService jokeCategories;
+        private readonly ICollectionsService collections;
 
-        public HomeController(
-            IJokesService jokes,
-            ICategoriesService jokeCategories)
+        public HomeController(ICollectionsService collections)
         {
-            this.jokes = jokes;
-            this.jokeCategories = jokeCategories;
+            this.collections = collections;
         }
 
         public ActionResult Index()
         {
-            var jokes = this.jokes.GetRandomJokes(3).To<JokeViewModel>().ToList();
-            var categories =
-                this.Cache.Get(
-                    "categories",
-                    () => this.jokeCategories.GetAll().To<JokeCategoryViewModel>().ToList(),
-                    30 * 60);
-            var viewModel = new IndexViewModel
-            {
-                Jokes = jokes,
-                Categories = categories
-            };
+            var viewModel = this.collections.GetActive().To<IndexViewModel>().ToList();
 
             return this.View(viewModel);
         }
+
+        //private readonly IJokesService jokes;
+        //private readonly ICategoriesService jokeCategories;
+
+        //public HomeController(
+        //    IJokesService jokes,
+        //    ICategoriesService jokeCategories)
+        //{
+        //    this.jokes = jokes;
+        //    this.jokeCategories = jokeCategories;
+        //}
+
+        //public ActionResult Index()
+        //{
+        //    var jokes = this.jokes.GetRandomJokes(3).To<JokeViewModel>().ToList();
+        //    var categories =
+        //        this.Cache.Get(
+        //            "categories",
+        //            () => this.jokeCategories.GetAll().To<JokeCategoryViewModel>().ToList(),
+        //            30 * 60);
+        //    var viewModel = new IndexViewModel
+        //    {
+        //        Jokes = jokes,
+        //        Categories = categories
+        //    };
+
+        //    return this.View(viewModel);
+        //}
     }
 }

@@ -21,6 +21,16 @@
 
         public IDbSet<JokeCategory> JokesCategories { get; set; }
 
+        public IDbSet<Collection> Collections { get; set; }
+
+        public IDbSet<Product> Products { get; set; }
+
+        public IDbSet<ProductVariant> ProductVariants { get; set; }
+
+        public IDbSet<ProductImage> ProductImages { get; set; }
+
+        public IDbSet<Category> Categories { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

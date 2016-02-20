@@ -1,0 +1,55 @@
+﻿@model OnlineStore.Web.ViewModels.Collection.IndexViewModel
+@{
+    ViewBag.Title = Model.Collection.Name;
+}
+
+<section id="collection-details">
+    <div><img src="@Model.Collection.Image"></div>
+    <div>
+        <h1>@Model.Collection.Name - @Model.Collection.ShortDescription</h1>
+        <strong>@Model.Collection.Description</strong>
+        <h3>Приключва на @Html.DisplayFor(m => m.Collection.DateEnd)</h3>
+    </div>
+</section>
+
+<section id="products-filter">
+    <h2 class="section-title">Продукти</h2>
+    <div>
+        <ul>
+            <li><a href="#disabled"><i class="fa fa-align-justify"></i></a></li>
+            <li><a href="#disabled"><i class="fa fa-th-large"></i></a></li>
+            <li>
+                <a href="#disabled" class="sort-dropdown-menu" data-state="closed">Сортирай по <i class="fa fa-angle-down"></i></a>
+                <ol>
+                    <li><a href="#">Цена ↑</a></li>
+                    <li><a href="#">Цена ↓</a></li>
+                </ol>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section id="products">
+    <div>
+        @foreach (var product in Model.Products)
+        {
+        <article itemscope="" itemtype="http://schema.org/Product" class="product-box">
+            <a href="@Url.Action(null, "Product", new { acronym = product.Acronym })" title="" itemprop="url"><img src="http://www.secretzone.bg/static/pictures/3841/1001576_300.jpg" alt="" itemprop="image"></a>
+            <h1 itemprop="name">@product.Name</h1>
+            <span itemprop="priceCurrency" content="BGN">лв</span>
+            <span itemprop="price" content="@product.Variants.FirstOrDefault().PriceCustomer">@Html.DisplayFor(m => product.Variants.FirstOrDefault().PriceCustomer)</span>
+            <span itemprop="highPrice">@Html.DisplayFor(m => product.Variants.FirstOrDefault().PriceMrsp)</span>
+            <div>
+                <ul class="product-sizes">
+                    @foreach (var variant in product.Variants)
+                    {
+                        <li><a href="#disabled">@variant.Internal</a></li>
+                    }
+                </ul>
+                <a href="#" title="" class="product-box-buy"><i class="fa fa-shopping-bag"></i></a>
+            </div>
+        </article>
+        }
+    </div>
+</section>
+

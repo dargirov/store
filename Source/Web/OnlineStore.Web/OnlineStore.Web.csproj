@@ -201,6 +201,7 @@
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CollectionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JokesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -217,6 +218,10 @@
     <Compile Include="ViewModels\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModels\Collection\CollectionViewModel.cs" />
+    <Compile Include="ViewModels\Collection\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Collection\ProductViewModel.cs" />
+    <Compile Include="ViewModels\Collection\VariantViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Home\JokeCategoryViewModel.cs" />
     <Compile Include="ViewModels\Home\JokeViewModel.cs" />
@@ -295,11 +300,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <Content Include="Views\Jokes\ById.cshtml" />
+    <Content Include="Views\Collection\Index.cshtml" />
+    <Content Include="Views\Collection\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Collection\DisplayTemplates\Decimal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
