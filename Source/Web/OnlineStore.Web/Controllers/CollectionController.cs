@@ -17,19 +17,11 @@
 
         public ActionResult Index(string acronym)
         {
-            var collection = this.collections.GetByAcronym(acronym);
-            if (collection == null)
+            var viewModel = this.collections.GetByAcronym(acronym).To<IndexViewModel>().FirstOrDefault();
+            if (viewModel == null)
             {
                 return this.HttpNotFound();
             }
-
-            var products = collection.Products.Where(p => p.IsActive).AsQueryable().To<ProductViewModel>().ToList();
-
-            var viewModel = new IndexViewModel()
-            {
-                Collection = this.Mapper.Map<CollectionViewModel>(collection),
-                Products = products
-            };
 
             return this.View(viewModel);
         }

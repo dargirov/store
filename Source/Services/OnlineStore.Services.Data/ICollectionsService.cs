@@ -7,6 +7,6 @@
     {
         IQueryable<Collection> GetActive();
 
-        Collection GetByAcronym(string acronym);
+        IQueryable<Collection> GetByAcronym(string acronym);
     }
 }

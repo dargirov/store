@@ -1,14 +1,14 @@
 ﻿@model OnlineStore.Web.ViewModels.Collection.IndexViewModel
 @{
-    ViewBag.Title = Model.Collection.Name;
+    ViewBag.Title = Model.Name;
 }
 
 <section id="collection-details">
-    <div><img src="@Model.Collection.Image"></div>
+    <div><img src="@Model.Image"></div>
     <div>
-        <h1>@Model.Collection.Name - @Model.Collection.ShortDescription</h1>
-        <strong>@Model.Collection.Description</strong>
-        <h3>Приключва на @Html.DisplayFor(m => m.Collection.DateEnd)</h3>
+        <h1>@Model.Name - @Model.ShortDescription</h1>
+        <strong>@Model.Description</strong>
+        <h3>Приключва на @Html.DisplayFor(m => m.DateEnd)</h3>
     </div>
 </section>
 

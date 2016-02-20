@@ -1,0 +1,54 @@
+﻿@model OnlineStore.Web.ViewModels.Product.IndexViewModel
+<section id="product">
+    <div id="product-pictures">
+        <img src="http://www.secretzone.bg/static/pictures/3848/1001257_300.jpg">
+        <ul>
+            <li><img src="http://www.secretzone.bg/static/pictures/3848/1001257_80.jpg"></li>
+            <li><img src="http://www.secretzone.bg/static/pictures/3848/1001257_80.jpg"></li>
+            <li><img src="http://www.secretzone.bg/static/pictures/3848/1001257_80.jpg"></li>
+        </ul>
+    </div>
+    <div id="product-description">
+        <h1>@Model.Name</h1>
+        <div>
+            <div>
+                <strong>Размер:</strong>
+                <ul class="product-sizes vissible">
+                    @foreach (var variant in Model.Variants)
+                    {
+                        <li><a href="#disabled">@variant.Internal</a></li>
+                    }
+                </ul>
+                <strong>Количество:</strong>
+                <ul id="choose-quantity">
+                    <li><a href="#disabled"><i class="fa fa-minus"></i></a></li><li><span>1</span></li><li><a href="#disabled"><i class="fa fa-plus"></i></a></li>
+                </ul>
+            </div>
+            <div id="add-to-cart-container">
+                <h4>@Model.Variants.FirstOrDefault().PriceCustomer</h4>
+                <h5>@Model.Variants.FirstOrDefault().PriceMrsp</h5>
+                <a href="#disabled" id="add-to-cart-btn">Добави в количка</a>
+            </div>
+        </div>
+        <div id="product-description-info">
+            <h5>Описание</h5>
+            <p>@Model.Description</p>
+        </div>
+    </div>
+</section>
+
+<section id="related-products">
+    <h1>Подобни продукти</h1>
+    <ul>
+        @for (int i = 0; i < 5; i++)
+        {
+        <li>
+            <article itemscope="" itemtype="http://schema.org/Product" class="product-box related-products">
+                <a href="product.php" title="" itemprop="url"><img src="http://www.secretzone.bg/static/pictures/3841/1001576_300.jpg" alt="" itemprop="image"></a>
+                <h1 itemprop="name">Елегантна рокля без ръкави в розов цвят от Figl</h1>
+                <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="1000.00">1,000.00</span>
+            </article>
+        </li>
+        }
+    </ul>
+</section>

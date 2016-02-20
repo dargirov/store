@@ -25,12 +25,11 @@
                 .ThenBy(c => c.Id);
         }
 
-        public Collection GetByAcronym(string acronym)
+        public IQueryable<Collection> GetByAcronym(string acronym)
         {
             return this.collections
                 .All()
-                .Where(c => c.Acronym == acronym)
-                .FirstOrDefault();
+                .Where(c => c.Acronym == acronym);
         }
     }
 }

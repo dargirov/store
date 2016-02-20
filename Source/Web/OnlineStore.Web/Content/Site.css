@@ -721,6 +721,10 @@ time, mark, audio, video {
 	color: #d54d4d;
 }
 
+#product-description-info p {
+    white-space: pre-line;
+}
+
 @media all and (max-width: 960px) {
 	#top > div { 
 		width: 100%;

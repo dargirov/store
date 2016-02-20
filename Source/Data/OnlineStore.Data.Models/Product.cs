@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using OnlineStore.Data.Common.Models;
+    using Common.Models;
 
     public class Product : BaseModel<int>
     {
