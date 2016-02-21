@@ -64,6 +64,9 @@
     <Compile Include="Collection.cs" />
     <Compile Include="Joke.cs" />
     <Compile Include="JokeCategory.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderProduct.cs" />
+    <Compile Include="OrderStatus.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductImage.cs" />
     <Compile Include="ProductVariant.cs" />

@@ -31,6 +31,10 @@
 
         public IDbSet<Category> Categories { get; set; }
 
+        public IDbSet<Order> Orders { get; set; }
+
+        public IDbSet<OrderProduct> OrderProducts { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
@@ -61,6 +65,15 @@
                     entity.ModifiedOn = DateTime.Now;
                 }
             }
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderProduct>()
+                .HasRequired(c => c.ProductVariant)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

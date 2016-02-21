@@ -13,10 +13,11 @@
         <div>
             <div>
                 <strong>Размер:</strong>
+                <b id="select-variant-message">Изберете размер</b>
                 <ul class="product-sizes vissible">
                     @foreach (var variant in Model.Variants)
                     {
-                        <li><a href="#disabled">@variant.Internal</a></li>
+                        <li><a href="#disabled" class="variant-button" data-variant-internal="@variant.Internal">@variant.Internal</a></li>
                     }
                 </ul>
                 <strong>Количество:</strong>
@@ -25,9 +26,20 @@
                 </ul>
             </div>
             <div id="add-to-cart-container">
-                <h4>@Model.Variants.FirstOrDefault().PriceCustomer</h4>
-                <h5>@Model.Variants.FirstOrDefault().PriceMrsp</h5>
-                <a href="#disabled" id="add-to-cart-btn">Добави в количка</a>
+                <h4>@Html.DisplayFor(m => m.Variants.FirstOrDefault().PriceCustomer)</h4>
+                <h5>@Html.DisplayFor(m => m.Variants.FirstOrDefault().PriceMrsp)</h5>
+                @Html.AntiForgeryToken()
+                <input type="hidden" id="selected-product-acronym" value="@Model.Acronym">
+                <input type="hidden" id="selected-variant-internal">
+                <input type="hidden" id="selected-quantity" value="1">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="#disabled" id="add-to-cart-btn" data-url="@Url.Action("AddProduct", "Cart", new { area = "Cart" })">Добави в количка</a>
+                }
+                else
+                {
+                    <div>За да направите поръчка трябва да сте регистриран потребител. <a href="#disabled" class="open-register-form-btn">Регистрация</a> / <a href="#disabled" class="open-login-form-btn">Вход</a></div>
+                }
             </div>
         </div>
         <div id="product-description-info">
@@ -53,3 +65,75 @@
     </ul>
 </section>
 
+@section scripts {
+
+    <script>
+        $(function () {
+
+            $('.variant-button').on('click', variantButtonClick);
+            function variantButtonClick(e) {
+                e.preventDefault();
+                var internal = $(this).data('variant-internal');
+                $('#select-variant-message').css('display', 'none');
+                $('#selected-variant-internal').val(internal);
+                $('.variant-button').removeClass('active');
+                $(this).addClass('active');
+            }
+
+            $('#choose-quantity').find('a').on('click', changeQuantityClick);
+            function changeQuantityClick(e) {
+                e.preventDefault();
+                var currentQuantity = parseInt($('#choose-quantity').find('span').html());
+
+                if ($(this).find('i').hasClass('fa-minus')) {
+                    if (currentQuantity === 1) {
+                        return;
+                    }
+
+                    currentQuantity--;
+                } else {
+                    currentQuantity++;
+                }
+
+                $('#selected-quantity').val(currentQuantity);
+                $('#choose-quantity').find('span').html(currentQuantity);
+            }
+
+            $('#add-to-cart-btn').on('click', addToCartButtonClick);
+            function addToCartButtonClick(e) {
+                e.preventDefault();
+                var url = $(this).data('url');
+                var acronym = $('#selected-product-acronym').val();
+                var internal = $('#selected-variant-internal').val();
+                var quantity = $('#selected-quantity').val();
+                var token = $('input[name=__RequestVerificationToken]').val();
+
+                if ($('#selected-variant-internal').val().length === 0) {
+                    $('#select-variant-message').css('display', 'block');
+                    return;
+                }
+
+                $.ajax({ method: 'POST', url: url, data: { __RequestVerificationToken: token, Acronym: acronym, Internal: internal, quantity: quantity } })
+                    .done(function (response) {
+                        if (!response.success) {
+                            $.colorbox({ html: response.error, className: 'colorbox-error', closeButton: true, arrowKey: false, scrolling: false, close: 'X' });
+                        }
+                    });
+            }
+
+            $('.open-register-form-btn').on('click', openRegisterFormClick);
+            function openRegisterFormClick(e) {
+                e.preventDefault()
+                $('#register-btn').trigger('click');
+            }
+
+            $('.open-login-form-btn').on('click', openLoginFormClick);
+            function openLoginFormClick(e) {
+                e.preventDefault()
+                $('#login-btn').trigger('click');
+            }
+
+        });
+    </script>    
+    
+}

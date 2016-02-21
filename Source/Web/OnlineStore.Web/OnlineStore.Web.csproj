@@ -199,6 +199,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Cart\CartAreaRegistration.cs" />
+    <Compile Include="Areas\Cart\Controllers\CartController.cs" />
+    <Compile Include="Areas\Cart\ViewModels\ProductViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
@@ -259,6 +262,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Cart\Views\web.config" />
+    <Content Include="Areas\Cart\Views\Cart\_PreviewPartial.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -305,15 +310,17 @@
     <Content Include="Views\Jokes\ById.cshtml" />
     <Content Include="Views\Collection\Index.cshtml" />
     <Content Include="Views\Collection\DisplayTemplates\DateTime.cshtml" />
-    <Content Include="Views\Collection\DisplayTemplates\Decimal.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Account\_RegisterPartial.cshtml" />
     <Content Include="Views\Account\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\Cart\Models\" />
+    <Folder Include="Areas\Cart\Views\Shared\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
