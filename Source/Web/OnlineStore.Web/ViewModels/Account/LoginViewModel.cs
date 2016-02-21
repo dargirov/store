@@ -4,17 +4,17 @@
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        [Required(ErrorMessage = "Email адрес е задължително поле")]
+        [Display(Name = "Email адрес")]
+        [EmailAddress(ErrorMessage = "Невалиден Email адрес")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Парола е задължително поле")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Парола")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомни ме?")]
         public bool RememberMe { get; set; }
     }
 }

@@ -53,3 +53,35 @@
     </div>
 </section>
 
+@section scripts {
+
+    <script>
+        $(function () {
+
+            $('.product-box').hover(function () {
+                $(this).addClass('product-box-hover');
+                $(this).find('.product-box-buy').css('visibility', 'initial');
+                $(this).find('ul').css('visibility', 'initial');
+            }, function () {
+                $(this).removeClass('product-box-hover');
+                $(this).find('.product-box-buy').css('visibility', 'hidden');
+                $(this).find('ul').css('visibility', 'hidden');
+            });
+
+            $('.sort-dropdown-menu').on('click', function (e) {
+                e.preventDefault();
+                var state = $(this).data('state');
+
+                if (state == 'closed') {
+                    $(this).data('state', 'opened');
+                    $(this).parent().find('ol').slideDown(200);
+                } else {
+                    $(this).data('state', 'closed');
+                    $(this).parent().find('ol').slideUp(200);
+                }
+            });
+
+        });
+    </script>
+
+}

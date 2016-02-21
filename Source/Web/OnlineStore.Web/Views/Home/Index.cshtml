@@ -53,6 +53,46 @@
     </ul>
 </section>
 
+@section scripts {
+
+    <script>
+        $(function () {
+            var sliderIndex = 0;
+            $('.slider-arrow').on('click', sliderArrowClick);
+            function sliderArrowClick(e) {
+                e.preventDefault();
+                var dir = $(this).data('dir');
+                var sliderCount = $('.slider-container').length;
+
+                switch (dir) {
+                    case 'next':
+                        sliderIndex++;
+                        if (sliderIndex >= sliderCount) {
+                            sliderIndex = 0;
+                        }
+                        break;
+                    case 'prev':
+                        sliderIndex--;
+                        if (sliderIndex < 0) {
+                            sliderIndex = sliderCount - 1;
+                        }
+                        break;
+                }
+
+                $('.slider-container').not('hidden').addClass('hidden');
+                $($('.slider-container')[sliderIndex]).removeClass('hidden');
+            }
+
+            $('.collection-box').hover(function () {
+                $(this).find('strong').slideDown(200);
+            }, function () {
+                $(this).find('strong').slideUp(200);
+            });
+        });
+    </script>
+    
+}
+
 @*<h1>Вицове</h1>
 <div class="row">
     @foreach (var joke in Model.Jokes)

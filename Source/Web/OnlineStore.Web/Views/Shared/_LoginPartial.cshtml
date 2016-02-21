@@ -1,22 +1,19 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+﻿@if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
+    <li>
+        @Html.ActionLink("Профил", "Index", "Manage", routeValues: new { area = string.Empty }, htmlAttributes: new { title = "Manage" })
+    </li>
+    <li>
+        @using (Html.BeginForm("LogOff", "Account", new { area = string.Empty }, FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Изход</a>
+        }
+    </li>
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: new { area = string.Empty }, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
-    }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = string.Empty }, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+    <li><a href="#disabled" id="register-btn" data-url="@Url.Action("Register", "Account")">Регистрация</a></li>
+    <li><a href="#disabled" id="login-btn" data-url="@Url.Action("Login", "Account")">Вход</a></li>
 }

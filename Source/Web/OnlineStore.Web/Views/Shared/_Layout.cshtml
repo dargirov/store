@@ -10,8 +10,8 @@
     <section id="top">
         <div>
             <ul>
-                <li><a href="#">Cart <span id="cart-count">0</span></a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="#">Чанта <span id="cart-count">0</span></a></li>
+                @Html.Partial("_LoginPartial")
             </ul>
             <div class="clearfix">
             </div>
@@ -72,66 +72,94 @@
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/colorbox")
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
     <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>-->
     <script>
 		$(function(){
 
-			var sliderIndex = 0;
-			$('.slider-arrow').on('click', sliderArrowClick);
-			function sliderArrowClick(e) {
-				e.preventDefault();
-				var dir = $(this).data('dir');
-				var sliderCount = $('.slider-container').length;
+		    var registerFormCache = '';
+		    $('#register-btn').on('click', registerButtonClick);
+		    function registerButtonClick(e) {
+		        e.preventDefault();
+		        var url = $(this).data('url');
 
-				switch (dir) {
-					case 'next':
-						sliderIndex++;
-						if (sliderIndex >= sliderCount) {
-							sliderIndex = 0;
-						}
-						break;
-					case 'prev':
-						sliderIndex--;
-						if (sliderIndex < 0) {
-							sliderIndex = sliderCount - 1;
-						}
-						break;
-				}
+		        if (registerFormCache.length > 0) {
+		            $.colorbox({ html: registerFormCache, className: 'register-colorbox', closeButton: false, transition: 'fade', arrowKey: false, scrolling: false });
+		            return;
+		        }
 
-				$('.slider-container').not('hidden').addClass('hidden');
-				$($('.slider-container')[sliderIndex]).removeClass('hidden');
-			}
+		        $.ajax({ method: 'GET', url: url, data: { } })
+                    .done(function (response) {
+                        registerFormCache = response;
+                        $.colorbox({ html: response, className: 'register-colorbox', closeButton: false, transition: 'fade', arrowKey: false, scrolling: false });
+                    });
+		    }
 
-			$('.product-box').hover(function() {
-				$(this).addClass('product-box-hover');
-				$(this).find('.product-box-buy').css('visibility', 'initial');
-				$(this).find('ul').css('visibility', 'initial');
- 			}, function() {
- 				$(this).removeClass('product-box-hover');
-				$(this).find('.product-box-buy').css('visibility', 'hidden');
-				$(this).find('ul').css('visibility', 'hidden');
-			});
+		    $('body').on('click', '#register-form-close', registerCloseButtonClick);
+		    function registerCloseButtonClick(e) {
+		        e.preventDefault();
+		        $.colorbox.close();
+		    }
 
-			$('.collection-box').hover(function() {
-				$(this).find('strong').slideDown(200);
- 			}, function() {
- 				$(this).find('strong').slideUp(200);
-			});
+		    $(document).on('submit', '.register-form', function (e) {
+		        e.preventDefault();
+		        var form = $(this);
 
-			$('.sort-dropdown-menu').on('click', function (e) {
-				e.preventDefault();
-				var state = $(this).data('state');
+                $.ajax({
+                    url: this.action, type: this.method, data: form.serialize(),
+                    success: function (html) {
+                        if (html.length === 0) {
+                            window.location = '/';
+                        } else {
+                            $('#register-form-container').parent().html(html);
+                            $.colorbox.resize()
+                        }
+                    }
+		        });
+		    });
 
-				if (state == 'closed') {
-					$(this).data('state', 'opened');
-					$(this).parent().find('ol').slideDown(200);
-				} else {
-					$(this).data('state', 'closed');
-					$(this).parent().find('ol').slideUp(200);
-				}
- 			});
+		    var loginFormCache = '';
+		    $('#login-btn').on('click', loginButtonClick);
+		    function loginButtonClick(e) {
+		        e.preventDefault();
+		        var url = $(this).data('url');
+
+		        if (loginFormCache.length > 0) {
+		            $.colorbox({ html: loginFormCache, className: 'login-colorbox', closeButton: false, transition: 'fade', arrowKey: false, scrolling: false });
+		            return;
+		        }
+
+		        $.ajax({ method: 'GET', url: url, data: {} })
+                    .done(function (response) {
+                        loginFormCache = response;
+                        $.colorbox({ html: response, className: 'login-colorbox', closeButton: false, transition: 'fade', arrowKey: false, scrolling: false });
+                    });
+		    }
+
+		    $('body').on('click', '#login-form-close', registerCloseButtonClick);
+		    function registerCloseButtonClick(e) {
+		        e.preventDefault();
+		        $.colorbox.close();
+		    }
+
+		    $(document).on('submit', '.login-form', function (e) {
+		        e.preventDefault();
+		        var form = $(this);
+
+		        $.ajax({
+		            url: this.action, type: this.method, data: form.serialize(),
+		            success: function (html) {
+		                if (html.length === 0) {
+		                    window.location = '/';
+		                } else {
+		                    $('#login-form-container').parent().html(html);
+		                    $.colorbox.resize()
+		                }
+		            }
+		        });
+		    });
 
 		});
     </script>

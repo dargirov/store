@@ -1,0 +1,36 @@
+﻿@model OnlineStore.Web.ViewModels.Account.RegisterViewModel
+@{ 
+    Layout = null;
+}
+<div id="register-form-container">
+    <a href="#disabled" id="register-form-close">X</a>
+    <h1>Регистрация</h1>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "register-form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("")
+
+        <div>
+            <span><i class="fa fa-at"></i></span>@Html.TextBoxFor(m => m.Email, new { placeholder = "Email адрес" })
+        </div>
+
+        <div>
+            <span><i class="fa fa-lock"></i></span>@Html.PasswordFor(m => m.Password, new { placeholder = "Парола" })
+        </div>
+
+        <div>
+            <span><i class="fa fa-lock"></i></span>@Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Повторете паролата" })
+        </div>
+
+        <div>
+            <span><i class="fa fa-user"></i></span>@Html.TextBoxFor(m => m.FirstName, new { placeholder = "Име" })
+        </div>
+
+        <div>
+            <span><i class="fa fa-users"></i></span>@Html.TextBoxFor(m => m.LastName, new { placeholder = "Фамилия" })
+        </div>
+
+        <input type="submit" value="Регистрация">
+
+    }
+</div>

@@ -65,7 +65,8 @@
         public ActionResult Login(string returnUrl)
         {
             this.ViewBag.ReturnUrl = returnUrl;
-            return this.View();
+            //return this.View();
+            return this.View("_LoginPartial");
         }
 
         // POST: /Account/Login
@@ -76,7 +77,8 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(model);
+                //return this.View(model);
+                return this.PartialView("_LoginPartial", model);
             }
 
             // This doesn't count login failures towards account lockout
@@ -91,7 +93,8 @@
             switch (result)
             {
                 case SignInStatus.Success:
-                    return this.RedirectToLocal(returnUrl);
+                    //return this.RedirectToLocal(returnUrl);
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
                 case SignInStatus.LockedOut:
                     return this.View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -100,8 +103,9 @@
                         new { ReturnUrl = returnUrl, model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    this.ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return this.View(model);
+                    this.ModelState.AddModelError(string.Empty, "Грешен Email адрес или парола");
+                    //return this.View(model);
+                    return this.PartialView("_LoginPartial", model);
             }
         }
 
@@ -159,7 +163,7 @@
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return this.View();
+            return this.View("_RegisterPartial");
         }
 
         // POST: /Account/Register
@@ -170,7 +174,7 @@
         {
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
                 var result = await this.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -181,14 +185,14 @@
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    return this.RedirectToAction("Index", "Home");
+                    return new HttpStatusCodeResult(System.Net.HttpStatusCode.OK);
                 }
 
                 this.AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return this.View(model);
+            return this.PartialView("_RegisterPartial", model);
         }
 
         // GET: /Account/ConfirmEmail
