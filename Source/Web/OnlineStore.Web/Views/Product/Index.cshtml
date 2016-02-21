@@ -117,6 +117,8 @@
                     .done(function (response) {
                         if (!response.success) {
                             $.colorbox({ html: response.error, className: 'colorbox-error', closeButton: true, arrowKey: false, scrolling: false, close: 'X' });
+                        } else {
+                            $('#cart-count').html(response.productsCount);
                         }
                     });
             }

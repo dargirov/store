@@ -35,6 +35,10 @@
 
         public IDbSet<OrderProduct> OrderProducts { get; set; }
 
+        public IDbSet<Address> Addresses { get; set; }
+
+        public IDbSet<City> Cities { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

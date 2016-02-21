@@ -6,7 +6,7 @@
     using Data.Models;
     using Microsoft.AspNet.Identity;
     using Services.Data;
-    using ViewModels;
+    using ViewModels.Cart;
     using Web.Controllers;
 
     [Authorize]
@@ -35,7 +35,23 @@
                 return this.HttpNotFound();
             }
 
-            return this.PartialView("_PreviewPartial");
+            var viewModel = this.Mapper.Map<PreviewViewModel>(order);
+
+            return this.PartialView("_PreviewPartial", viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult Address()
+        {
+            var order = this.GetOrderFromSession();
+            if (order == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            var viewModel = this.Mapper.Map<PreviewViewModel>(order);
+
+            return this.PartialView("_AddressPartial", viewModel);
         }
 
         [HttpPost]
@@ -68,7 +84,7 @@
                     var orderId = this.UpdateOrder(order, product.Id, variantId, model.Quantity);
                 }
 
-                return this.Json(new { success = true, error = string.Empty });
+                return this.Json(new { success = true, error = string.Empty, productsCount = order == null ? 1 : order.Products.Count() });
             }
 
             return this.Json(new { success = false, error = "modelState" });

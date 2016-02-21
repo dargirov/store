@@ -10,7 +10,7 @@
     <section id="top">
         <div>
             <ul>
-                <li><a href="#">Чанта <span id="cart-count">0</span></a></li>
+                <li><a href="#disabled" id="cart-btn" data-url="@Url.Action("Preview", "Cart", routeValues: new { area = "Cart" })">Чанта <span id="cart-count">0</span></a></li>
                 @Html.Partial("_LoginPartial")
             </ul>
             <div class="clearfix">
@@ -97,7 +97,7 @@
                     });
 		    }
 
-		    $('body').on('click', '#register-form-close', registerCloseButtonClick);
+		    $('body').on('click', '.colorbox-close', registerCloseButtonClick);
 		    function registerCloseButtonClick(e) {
 		        e.preventDefault();
 		        $.colorbox.close();
@@ -138,12 +138,6 @@
                     });
 		    }
 
-		    $('body').on('click', '#login-form-close', registerCloseButtonClick);
-		    function registerCloseButtonClick(e) {
-		        e.preventDefault();
-		        $.colorbox.close();
-		    }
-
 		    $(document).on('submit', '.login-form', function (e) {
 		        e.preventDefault();
 		        var form = $(this);
@@ -160,6 +154,32 @@
 		            }
 		        });
 		    });
+
+		    $('#cart-btn').on('click', cartButtonClick);
+		    function cartButtonClick(e) {
+		        e.preventDefault();
+		        var url = $(this).data('url');
+
+		        $.ajax({ method: 'GET', url: url, data: {} })
+                    .done(function (response) {
+                        registerFormCache = response;
+                        $.colorbox({ html: response, className: 'cart-colorbox', closeButton: false, transition: 'fade', arrowKey: false, scrolling: false });
+                    });
+		    }
+
+		    $(document).on('click', '.cart-next', cartNextStepButtonClick);
+		    function cartNextStepButtonClick(e) {
+		        e.preventDefault();
+		        var step = parseInt($(this).data('step'));
+		        var url = $(this).data('url');
+
+		        if (step === 1) {
+		            $.ajax({ method: 'GET', url: url, data: {} })
+                        .done(function (response) {
+                            $('#cart-container').parent().html(response);
+                        });
+		        }
+		    }
 
 		});
     </script>

@@ -201,7 +201,10 @@
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\Cart\CartAreaRegistration.cs" />
     <Compile Include="Areas\Cart\Controllers\CartController.cs" />
-    <Compile Include="Areas\Cart\ViewModels\ProductViewModel.cs" />
+    <Compile Include="Areas\Cart\ViewModels\Cart\AddressViewModel.cs" />
+    <Compile Include="Areas\Cart\ViewModels\Cart\OrderProductViewModel.cs" />
+    <Compile Include="Areas\Cart\ViewModels\Cart\PreviewViewModel.cs" />
+    <Compile Include="Areas\Cart\ViewModels\Cart\ProductViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
@@ -264,6 +267,7 @@
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Cart\Views\web.config" />
     <Content Include="Areas\Cart\Views\Cart\_PreviewPartial.cshtml" />
+    <Content Include="Areas\Cart\Views\Cart\_AddressPartial.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />

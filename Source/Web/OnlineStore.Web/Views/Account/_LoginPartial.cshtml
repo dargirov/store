@@ -3,7 +3,7 @@
     Layout = null;
 }
 <div id="login-form-container">
-    <a href="#disabled" id="login-form-close">X</a>
+    <a href="#disabled" class="colorbox-close">X</a>
     <h1>Вход</h1>
     @using (Html.BeginForm("Login", "Account", new { ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form" }))
     {

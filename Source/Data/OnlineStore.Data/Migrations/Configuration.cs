@@ -43,7 +43,25 @@
                 var collectionList = this.GenerateCollections(context, categoryList);
                 var productList = this.GenerateProducts(context, collectionList);
                 this.GenerateProductVariants(context, productList);
+                this.GenerateCities(context);
             }
+        }
+
+        private void GenerateCities(ApplicationDbContext context)
+        {
+            context.Cities.Add(new City() { Name = "София" });
+            context.Cities.Add(new City() { Name = "Пловдив" });
+            context.Cities.Add(new City() { Name = "Варна" });
+            context.Cities.Add(new City() { Name = "Бургас" });
+            context.Cities.Add(new City() { Name = "Русе" });
+            context.Cities.Add(new City() { Name = "Видин" });
+            context.Cities.Add(new City() { Name = "Асеновград" });
+            context.Cities.Add(new City() { Name = "Смолян" });
+            context.Cities.Add(new City() { Name = "Трявна" });
+            context.Cities.Add(new City() { Name = "Перник" });
+            context.Cities.Add(new City() { Name = "Плевен" });
+            context.Cities.Add(new City() { Name = "Велико Търново" });
+            context.SaveChanges();
         }
 
         private List<Category> GenerateCategories(ApplicationDbContext context)

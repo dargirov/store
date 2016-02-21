@@ -689,7 +689,7 @@ time, mark, audio, video {
 	margin-bottom: 20px;
 }
 
-#add-to-cart-btn {
+#add-to-cart-btn, .cart-next {
 	font-weight: normal;
 	font-family: 'Roboto Condensed', sans-serif;
 	font-size: 14px;
@@ -701,6 +701,11 @@ time, mark, audio, video {
 	text-shadow: 0px 1px 1px #93191b;
 	border-bottom: 2px solid #d9d9d9;
 	display: block;
+}
+
+.cart-next {
+    width: 180px;
+    text-align: center;
 }
 
 #add-to-cart-container div {
@@ -742,7 +747,7 @@ time, mark, audio, video {
     margin: 0 auto;
 }
 
-#register-form-container, #login-form-container {
+#register-form-container, #login-form-container, #cart-container {
     width: 260px;
     background-color: #f5f5f5;
     padding: 5px 20px 25px 20px;
@@ -750,7 +755,11 @@ time, mark, audio, video {
     box-shadow: 0 0 15px rgba(0,0,0,0.18);
 }
 
-#register-form-container h1, #login-form-container h1 {
+#cart-container {
+    width: 500px;
+}
+
+#register-form-container h1, #login-form-container h1, #cart-container h1 {
     color: #333;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 19px;
@@ -807,7 +816,7 @@ time, mark, audio, video {
     font-size: 15px;
 }
 
-#register-form-close, #login-form-close {
+.colorbox-close {
     text-align: right;
     display: block;
     text-decoration: none;
@@ -861,6 +870,28 @@ time, mark, audio, video {
 .colorbox-error button {
     background-color: white;
     border: 1px solid #eee;
+}
+
+#cart-container ol {
+    list-style-type: none;
+}
+
+#cart-container li {
+    font-family: Tahoma;
+    font-size: 13px;
+    margin: 15px 0;
+    background-color: #eee;
+    padding: 10px;
+    color: #333;
+}
+
+#cart-container span {
+    display: block;
+}
+
+#cart-container span:first-of-type {
+    font-size: 14px;
+    font-weight: bold;
 }
 
 @media all and (max-width: 960px) {

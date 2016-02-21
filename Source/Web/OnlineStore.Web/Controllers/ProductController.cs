@@ -18,6 +18,11 @@
         public ActionResult Index(string acronym)
         {
             var viewModel = this.products.GetByAcronym(acronym).To<IndexViewModel>().FirstOrDefault();
+            if (viewModel == null)
+            {
+                return this.HttpNotFound();
+            }
+
             return this.View(viewModel);
         }
     }
