@@ -20,5 +20,9 @@
         public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<OrderProduct> Products { get; set; }
+
+        public int? AddressId { get; set; }
+
+        public virtual Address Address { get; set; }
     }
 }

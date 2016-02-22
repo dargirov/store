@@ -8,17 +8,19 @@
     using Services.Data;
     using ViewModels.Cart;
     using Web.Controllers;
-
+    using System.Net;
     [Authorize]
     public class CartController : BaseController
     {
         private readonly IOrdersService orders;
         private readonly IProductsService products;
+        private readonly IAddressesService addresses;
 
-        public CartController(IOrdersService orders, IProductsService products)
+        public CartController(IOrdersService orders, IProductsService products, IAddressesService addresses)
         {
             this.orders = orders;
             this.products = products;
+            this.addresses = addresses;
         }
 
         public ActionResult Index()
@@ -49,9 +51,70 @@
                 return this.HttpNotFound();
             }
 
-            var viewModel = this.Mapper.Map<PreviewViewModel>(order);
+            var viewModel = new AddressViewModel()
+            {
+                Cities = this.addresses.GetCities()
+            };
 
             return this.PartialView("_AddressPartial", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Confirm(AddressViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.HttpNotFound();
+            }
+
+            var order = this.GetOrderFromSession();
+            if (order == null)
+            {
+                return this.HttpNotFound();
+            }
+
+            order.Address = new Address()
+            {
+                CityId = int.Parse(model.CityId.ToString()),
+                Comment = model.Comment,
+                Phone = model.Phone,
+                Street = model.Street,
+                UserId = this.User.Identity.GetUserId()
+            };
+
+            var updatedOrder = this.orders.Update(order);
+
+            var viewModel = new ConfirmViewModel()
+            {
+                Preview = this.Mapper.Map<PreviewViewModel>(updatedOrder),
+                Address = model
+            };
+
+            return this.PartialView("_ConfirmPartial", viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult Finish()
+        {
+            var orderId = (int?)this.Session["orderId"];
+            if (orderId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
+            }
+
+            var order = this.orders.GetById(int.Parse(orderId.ToString()));
+            order.Status = OrderStatus.Requested;
+
+            // update reserved quantity
+            foreach (var orderProduct in order.Products)
+            {
+                this.products.
+            }
+
+            this.orders.Update(order);
+
+            return this.RedirectToAction("Order", "Order", new { area = string.Empty });
         }
 
         [HttpPost]

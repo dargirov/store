@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressesService.cs" />
     <Compile Include="CategoriesService.cs" />
     <Compile Include="CollectionsService.cs" />
+    <Compile Include="IAddressesService.cs" />
     <Compile Include="ICategoriesService.cs" />
     <Compile Include="ICollectionsService.cs" />
     <Compile Include="IJokesService.cs" />

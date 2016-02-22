@@ -1,11 +1,12 @@
-﻿@model OnlineStore.Web.Areas.Cart.ViewModels.Cart.PreviewViewModel
+﻿@model OnlineStore.Web.Areas.Cart.ViewModels.Cart.ConfirmViewModel
 
 <div id="cart-container">
     <a href="#disabled" class="colorbox-close">X</a>
     <h1>Кошница</h1>
     <div>
+        <h3>Продукти</h3>
         <ol>
-            @foreach (var orderProduct in Model.Products)
+            @foreach (var orderProduct in Model.Preview.Products)
             {
                 <li>
                     <span>@orderProduct.Product.Name</span>
@@ -15,8 +16,15 @@
                 </li>
             }
         </ol>
+        <h3>Адрес</h3>
+        <ul>
+            <li>@Model.Address.Street</li>
+            <li>@Model.Address.Phone</li>
+            <li>@Model.Address.Comment</li>
+        </ul>
     </div>
     <div>
-        <a href="#disabled" class="cart-next" data-step="1" data-url="@Url.Action("Address", "Cart", routeValues: new { area = "Cart" })">Въведи адрес &gt;&gt;</a>
+        <a href="@Url.Action("Finish", "Cart", routeValues: new { area = "Cart" })" class="cart-next" data-step="3">Завърши &gt;&gt;</a>
     </div>
+
 </div>

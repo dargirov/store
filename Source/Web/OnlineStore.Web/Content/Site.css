@@ -894,6 +894,40 @@ time, mark, audio, video {
     font-weight: bold;
 }
 
+#cart-container label {
+    display: block;
+    margin-top: 10px;
+    font-family: Arial;
+    font-size: 13px;
+}
+
+#cart-container input, #cart-container textarea, #cart-container select {
+    border: 1px solid #ccc;
+    height: 25px;
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+#cart-container textarea {
+    height: 40px;
+}
+
+#cart-container h3 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 14px;
+    color: #333;
+    font-weight: normal;
+}
+
+#cart-container ul {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+#cart-container ul li {
+    margin: 3px 0;
+}
+
 @media all and (max-width: 960px) {
 	#top > div { 
 		width: 100%;

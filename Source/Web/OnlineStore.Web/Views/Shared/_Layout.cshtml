@@ -169,15 +169,26 @@
 
 		    $(document).on('click', '.cart-next', cartNextStepButtonClick);
 		    function cartNextStepButtonClick(e) {
-		        e.preventDefault();
+		        
 		        var step = parseInt($(this).data('step'));
 		        var url = $(this).data('url');
 
 		        if (step === 1) {
+		            e.preventDefault();
 		            $.ajax({ method: 'GET', url: url, data: {} })
                         .done(function (response) {
                             $('#cart-container').parent().html(response);
+                            $.colorbox.resize();
                         });
+		        } else if (step === 2) {
+		            e.preventDefault();
+		            var form = $(this).parent().parent().find('form');
+                    
+		            $.ajax({ type: 'POST', url: url, data: form.serialize() })
+		                .done(function (response) {
+		                    $('#cart-container').parent().html(response);
+		                    $.colorbox.resize();
+		                });
 		        }
 		    }
 

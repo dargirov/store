@@ -6,5 +6,7 @@
     public interface IProductsService
     {
         IQueryable<Product> GetByAcronym(string acronym);
+
+        IQueryable<Product> GetById(int id);
     }
 }

@@ -1,12 +1,31 @@
-﻿@model OnlineStore.Web.Areas.Cart.ViewModels.Cart.PreviewViewModel
+﻿@model OnlineStore.Web.Areas.Cart.ViewModels.Cart.AddressViewModel
 
 <div id="cart-container">
     <a href="#disabled" class="colorbox-close">X</a>
     <h1>Кошница</h1>
     <div>
-        Address
+        @using (Html.BeginForm("", "", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(a => a.Cities)
+            <select name="CityId">
+                @foreach (var city in Model.Cities)
+                {
+                    <option value="@city.Id">@city.Name</option>
+                }
+            </select>
+
+            @Html.LabelFor(a => a.Street)
+            @Html.TextBoxFor(a => a.Street)
+
+            @Html.LabelFor(a => a.Phone)
+            @Html.TextBoxFor(a => a.Phone)
+
+            @Html.LabelFor(a => a.Comment)
+            @Html.TextAreaFor(a => a.Comment)
+        }
     </div>
     <div>
-        <a href="#disabled" class="cart-next">Потвърждение &gt;&gt;</a>
+        <a href="#disabled" class="cart-next" data-step="2" data-url="@Url.Action("Confirm", "Cart", routeValues: new { area = "Cart" })">Потвърждение &gt;&gt;</a>
     </div>
 </div>

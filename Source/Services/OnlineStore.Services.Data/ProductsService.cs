@@ -1,5 +1,6 @@
 ﻿namespace OnlineStore.Services.Data
 {
+    using System;
     using System.Linq;
     using OnlineStore.Data.Common;
     using OnlineStore.Data.Models;
@@ -18,6 +19,12 @@
             return this.products
                 .All()
                 .Where(p => p.Acronym == acronym);
+        }
+
+        public IQueryable<Product> GetById(int id)
+        {
+            return this.products
+                .GetById
         }
     }
 }
