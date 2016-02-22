@@ -213,6 +213,7 @@
     <Compile Include="Controllers\JokesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="App_Start\GlimpseSecurityPolicy.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -242,6 +243,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Manage\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="ViewModels\Order\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\Order\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Order\OrderViewModel.cs" />
     <Compile Include="ViewModels\Product\IndexViewModel.cs" />
     <Compile Include="ViewModels\Product\VariantViewModel.cs" />
   </ItemGroup>
@@ -270,6 +274,7 @@
     <Content Include="Areas\Cart\Views\Cart\_PreviewPartial.cshtml" />
     <Content Include="Areas\Cart\Views\Cart\_AddressPartial.cshtml" />
     <Content Include="Areas\Cart\Views\Cart\_ConfirmPartial.cshtml" />
+    <Content Include="Areas\Cart\Views\Cart\DisplayTemplates\Decimal.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -320,6 +325,8 @@
     <Content Include="Views\Account\_RegisterPartial.cshtml" />
     <Content Include="Views\Account\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

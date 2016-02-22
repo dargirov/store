@@ -7,16 +7,18 @@
         <ol>
             @foreach (var orderProduct in Model.Products)
             {
+                Model.CurrentProductPrice = orderProduct.ProductVariant.PriceCustomer * orderProduct.Reserved;
                 <li>
                     <span>@orderProduct.Product.Name</span>
                     <span>Размер: @orderProduct.ProductVariant.Internal</span>
                     <span>Количество: @orderProduct.Reserved</span>
-                    <span>Цена: @(orderProduct.ProductVariant.PriceCustomer * orderProduct.Reserved)</span>
+                    <span>Цена: @Html.DisplayFor(m => m.CurrentProductPrice)</span>
                 </li>
             }
         </ol>
     </div>
     <div>
         <a href="#disabled" class="cart-next" data-step="1" data-url="@Url.Action("Address", "Cart", routeValues: new { area = "Cart" })">Въведи адрес &gt;&gt;</a>
+        <div class="clearfix"></div>
     </div>
 </div>

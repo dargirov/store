@@ -1,6 +1,5 @@
 ﻿namespace OnlineStore.Services.Data
 {
-    using System;
     using System.Linq;
     using OnlineStore.Data.Common;
     using OnlineStore.Data.Models;
@@ -45,6 +44,13 @@
             oldOrder.Products = order.Products;
             this.orders.Save();
             return oldOrder;
+        }
+
+        public IQueryable<Order> GetByUserId(string userId)
+        {
+            return this.orders
+                .All()
+                .Where(o => o.UserId == userId);
         }
     }
 }

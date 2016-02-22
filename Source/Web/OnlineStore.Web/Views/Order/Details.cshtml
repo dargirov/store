@@ -1,0 +1,31 @@
+﻿@model OnlineStore.Web.ViewModels.Order.DetailsViewModel
+@{
+    ViewBag.Title = "Информация за поръчка";
+}
+
+<section class="body-container" id="order-details">
+    <h1>Информация за поръчка</h1>
+    <h3>Продукти</h3>
+    <ol>
+        @foreach (var orderProduct in Model.Products)
+        {
+            Model.CurrentProductPrice = orderProduct.ProductVariant.PriceCustomer * orderProduct.Reserved;
+            Model.TotalPrice += Model.CurrentProductPrice;
+            <li>
+                <span>@orderProduct.Product.Name</span>
+                <span>Размер: @orderProduct.ProductVariant.Internal</span>
+                <span>Количество: @orderProduct.Reserved</span>
+                <span>Цена: @Html.DisplayFor(m => m.CurrentProductPrice)</span>
+            </li>
+        }
+    </ol>
+
+    <h3>Адрес</h3>
+    <ul>
+        <li>@Model.Address.Street</li>
+        <li>@Model.Address.Phone</li>
+        <li>@Model.Address.Comment</li>
+    </ul>
+    <h3>Крайна цена</h3>
+    <strong class="cart-total-price">@Html.DisplayFor(m => m.TotalPrice)</strong>
+</section>

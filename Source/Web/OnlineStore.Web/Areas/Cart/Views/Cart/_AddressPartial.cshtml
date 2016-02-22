@@ -16,9 +16,11 @@
             </select>
 
             @Html.LabelFor(a => a.Street)
+            <div id="cart-street-error"></div>
             @Html.TextBoxFor(a => a.Street)
 
             @Html.LabelFor(a => a.Phone)
+            <div id="cart-phone-error"></div>
             @Html.TextBoxFor(a => a.Phone)
 
             @Html.LabelFor(a => a.Comment)
@@ -27,5 +29,6 @@
     </div>
     <div>
         <a href="#disabled" class="cart-next" data-step="2" data-url="@Url.Action("Confirm", "Cart", routeValues: new { area = "Cart" })">Потвърждение &gt;&gt;</a>
+        <div class="clearfix"></div>
     </div>
 </div>

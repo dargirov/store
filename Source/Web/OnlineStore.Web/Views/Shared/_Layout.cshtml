@@ -183,6 +183,18 @@
 		        } else if (step === 2) {
 		            e.preventDefault();
 		            var form = $(this).parent().parent().find('form');
+		            var street = $('#Street').val();
+		            var phone = $('#Phone').val();
+
+		            if (street.length < 3) {
+		                $('#cart-street-error').html('Въведете улица');
+		                return;
+		            }
+
+		            if (phone.length < 3) {
+		                $('#cart-phone-error').html('Въведете телефон');
+		                return;
+		            }
                     
 		            $.ajax({ type: 'POST', url: url, data: form.serialize() })
 		                .done(function (response) {

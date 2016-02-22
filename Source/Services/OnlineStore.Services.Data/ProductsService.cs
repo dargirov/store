@@ -21,10 +21,10 @@
                 .Where(p => p.Acronym == acronym);
         }
 
-        public IQueryable<Product> GetById(int id)
+        public Product GetById(int id)
         {
             return this.products
-                .GetById
+                .GetById(id);
         }
     }
 }

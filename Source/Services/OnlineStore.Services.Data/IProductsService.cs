@@ -7,6 +7,6 @@
     {
         IQueryable<Product> GetByAcronym(string acronym);
 
-        IQueryable<Product> GetById(int id);
+        Product GetById(int id);
     }
 }

@@ -15,6 +15,7 @@
 
         public HomeController(ICollectionsService collections)
         {
+            var categories = base.GetCategories();
             this.collections = collections;
         }
 

@@ -1,6 +1,9 @@
 ﻿@if (Request.IsAuthenticated)
 {
     <li>
+        @Html.ActionLink("Поръчки", "Index", "Order", routeValues: new { area = string.Empty }, htmlAttributes: new { title = "Manage" })
+    </li>
+    <li>
         @Html.ActionLink("Профил", "Index", "Manage", routeValues: new { area = string.Empty }, htmlAttributes: new { title = "Manage" })
     </li>
     <li>

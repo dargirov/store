@@ -706,6 +706,17 @@ time, mark, audio, video {
 .cart-next {
     width: 180px;
     text-align: center;
+    float: right;
+}
+
+.clearfix {
+    clear: both;
+}
+
+#cart-street-error, #cart-phone-error {
+    color: red;
+    font-family: Arial;
+    font-size: 13px;
 }
 
 #add-to-cart-container div {
@@ -925,6 +936,62 @@ time, mark, audio, video {
 }
 
 #cart-container ul li {
+    margin: 3px 0;
+}
+
+.cart-total-price {
+    font-family: Arial;
+    font-size: 24px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+#order-history, #order-details {
+    border-top: 1px solid #EFEFEF;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+#order-history h1, #order-details h1 {
+    font-size: 22px;
+    font-weight: normal;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+#order-history ul {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+#order-history li {
+    margin: 3px 0;
+}
+
+#order-history a {
+    color: #444;
+    font-family: Tahoma;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+#order-details h3 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+    color: #333;
+    font-weight: normal;
+}
+
+#order-details ol, #order-details ul {
+    list-style-type: none;
+    font-family: Arial;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#order-details li span {
+    display: block;
     margin: 3px 0;
 }
 

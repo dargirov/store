@@ -2,13 +2,14 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using Data.Models;
     using Microsoft.AspNet.Identity;
     using Services.Data;
     using ViewModels.Cart;
     using Web.Controllers;
-    using System.Net;
+
     [Authorize]
     public class CartController : BaseController
     {
@@ -100,7 +101,7 @@
             var orderId = (int?)this.Session["orderId"];
             if (orderId == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No order id");
             }
 
             var order = this.orders.GetById(int.Parse(orderId.ToString()));
@@ -109,7 +110,12 @@
             // update reserved quantity
             foreach (var orderProduct in order.Products)
             {
-                this.products.
+                var product = this.products.GetById(orderProduct.ProductId);
+                var productVariant = product.Variants.Where(v => v.Id == orderProduct.ProductVariantId).FirstOrDefault();
+                if (productVariant != null)
+                {
+                    productVariant.Reserved += orderProduct.Reserved;
+                }
             }
 
             this.orders.Update(order);
