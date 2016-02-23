@@ -52,5 +52,12 @@
                 .All()
                 .Where(o => o.UserId == userId);
         }
+
+        public IQueryable<Order> GetAll()
+        {
+            return this.orders
+                .All()
+                .OrderByDescending(o => o.Id);
+        }
     }
 }

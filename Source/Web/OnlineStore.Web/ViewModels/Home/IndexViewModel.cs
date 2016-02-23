@@ -5,6 +5,8 @@
 
     public class IndexViewModel : IMapFrom<Collection>
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string Image { get; set; }
@@ -14,9 +16,5 @@
         public string ShortDescription { get; set; }
 
         public string Acronym { get; set; }
-
-        //public IEnumerable<JokeViewModel> Jokes { get; set; }
-
-        //public IEnumerable<JokeCategoryViewModel> Categories { get; set; }
     }
 }

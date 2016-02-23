@@ -6,5 +6,7 @@
     public interface ICategoriesService
     {
         IQueryable<Category> GetAll();
+
+        Category GetByAcronym(string acronym);
     }
 }

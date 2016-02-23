@@ -7,12 +7,12 @@
         <ol>
             @foreach (var orderProduct in Model.Products)
             {
-                Model.CurrentProductPrice = orderProduct.ProductVariant.PriceCustomer * orderProduct.Reserved;
+                var price = orderProduct.ProductVariant.PriceCustomer * orderProduct.Reserved;
                 <li>
                     <span>@orderProduct.Product.Name</span>
                     <span>Размер: @orderProduct.ProductVariant.Internal</span>
                     <span>Количество: @orderProduct.Reserved</span>
-                    <span>Цена: @Html.DisplayFor(m => m.CurrentProductPrice)</span>
+                    <span>Цена: @Html.DisplayFor(m => price)</span>
                 </li>
             }
         </ol>

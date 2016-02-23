@@ -17,7 +17,8 @@
             routes.MapRoute(
                 name: "Collections",
                 url: "Collection/{acronym}",
-                defaults: new { controller = "Collection", action = "Index" });
+                defaults: new { controller = "Collection", action = "Index" },
+                namespaces: new[] { "OnlineStore.Web.Controllers" });
 
             routes.MapRoute(
                 name: "Default",

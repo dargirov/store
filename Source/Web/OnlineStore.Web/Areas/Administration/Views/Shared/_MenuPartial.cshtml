@@ -1,0 +1,30 @@
+﻿@{
+    var controllerName = (string)ViewContext.RouteData.Values["controller"];
+}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">CoolStore</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Начало</a></li>
+                <li><a href="#">Категории</a></li>
+                <li class="@(controllerName == "Collection" ? "active" : "")">@Html.ActionLink("Колекции", "Index", "Collection", new { area = "Administration" }, null)</li>
+                <li class="@(controllerName == "Order" ? "active" : "")">@Html.ActionLink("Поръчки", "Index", "Order", new { area = "Administration" }, null)</li>
+                <li><a href="#">Потребители</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Изход</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

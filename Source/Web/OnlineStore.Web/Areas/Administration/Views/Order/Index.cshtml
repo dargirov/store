@@ -1,0 +1,40 @@
+﻿@model IEnumerable<OnlineStore.Web.Areas.Administration.ViewModels.Order.IndexViewModel>
+@{
+    ViewBag.Title = "Поръчки";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Начало", "Index", "Administration", new { area = "Administration" }, null)</li>
+        <li class="active">Поръчки</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <a href="" class="btn btn-default">Филтър</a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-bordered table-striped table-hover table-responsive table-condensed">
+        <tr>
+            <th>ID</th>
+            <th>Статус</th>
+            <th>Потребител</th>
+            <th>Дата</th>
+            <th>Действия</th>
+        </tr>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@Html.DisplayFor(o => order.Status, "OrderStatus")</td>
+                <td>@(string.Format("{0} {1} ({2})", order.User.FirstName, order.User.LastName, order.User.Email))</td>
+                <td>@Html.DisplayFor(o => order.CreatedOn)</td>
+                <td></td>
+            </tr>
+        }
+    </table>
+</div>

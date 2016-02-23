@@ -120,7 +120,7 @@
 
             this.orders.Update(order);
 
-            return this.RedirectToAction("Order", "Order", new { area = string.Empty });
+            return this.RedirectToAction("Details", "Order", new { id = order.Id, area = string.Empty });
         }
 
         [HttpPost]

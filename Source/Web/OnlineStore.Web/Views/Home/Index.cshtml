@@ -36,10 +36,11 @@
     <div>
         @foreach (var collection in Model)
         {
-        <a href="@Url.Action(null, "collection", new { acronym = collection.Acronym })" class="collection-box" style="background-image: url('@collection.Image')">
-            <strong>Отстъпки до -@collection.Discount.ToString("#")%</strong>
-            <span><b>@collection.Name</b> - @collection.ShortDescription</span>
-        </a>
+            var image = string.Format("/Content/Images/Collections/{0}/{1}", @collection.Id, @collection.Image);
+            <a href="@Url.Action("Index", "Collection", new { acronym = collection.Acronym })" class="collection-box" style="background-image: url(@image)">
+                <strong>Отстъпки до -@collection.Discount.ToString("#")%</strong>
+                <span><b>@collection.Name</b> - @collection.ShortDescription</span>
+            </a>
         }
     </div>
 </section>

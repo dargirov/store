@@ -11,17 +11,6 @@
 
     public abstract class BaseController : Controller
     {
-        private readonly ICategoriesService categories;
-
-        public BaseController()
-        {
-        }
-
-        public BaseController(ICategoriesService categories)
-        {
-            this.categories = categories;
-        }
-
         public ICacheService Cache { get; set; }
 
         protected IMapper Mapper
@@ -30,11 +19,6 @@
             {
                 return AutoMapperConfig.Configuration.CreateMapper();
             }
-        }
-
-        protected List<Category> GetCategories()
-        {
-            return this.categories.GetAll().ToList();
         }
     }
 }

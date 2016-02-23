@@ -12,5 +12,7 @@
         Order Update(Order order);
 
         IQueryable<Order> GetByUserId(string userId);
+
+        IQueryable<Order> GetAll();
     }
 }

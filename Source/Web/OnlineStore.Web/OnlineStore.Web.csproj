@@ -199,6 +199,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CollectionController.cs" />
+    <Compile Include="Areas\Administration\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Collection\CreateViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Collection\IndexViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Order\IndexViewModel.cs" />
     <Compile Include="Areas\Cart\CartAreaRegistration.cs" />
     <Compile Include="Areas\Cart\Controllers\CartController.cs" />
     <Compile Include="Areas\Cart\ViewModels\Cart\AddressViewModel.cs" />
@@ -230,6 +235,7 @@
     <Compile Include="ViewModels\Collection\IndexViewModel.cs" />
     <Compile Include="ViewModels\Collection\ProductViewModel.cs" />
     <Compile Include="ViewModels\Collection\VariantViewModel.cs" />
+    <Compile Include="ViewModels\Home\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\Home\JokeCategoryViewModel.cs" />
     <Compile Include="ViewModels\Home\JokeViewModel.cs" />
@@ -250,24 +256,35 @@
     <Compile Include="ViewModels\Product\VariantViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Areas\Administration\Content\bootstrap-theme.css" />
+    <Content Include="Areas\Administration\Content\bootstrap-theme.min.css" />
+    <Content Include="Areas\Administration\Content\bootstrap.css" />
+    <Content Include="Areas\Administration\Content\bootstrap.min.css" />
+    <Content Include="Areas\Administration\Content\Images\ui-icons_444444_256x240.png" />
+    <Content Include="Areas\Administration\Content\Images\ui-icons_555555_256x240.png" />
+    <Content Include="Areas\Administration\Content\Images\ui-icons_777620_256x240.png" />
+    <Content Include="Areas\Administration\Content\Images\ui-icons_777777_256x240.png" />
+    <Content Include="Areas\Administration\Content\Images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Areas\Administration\Content\Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Areas\Administration\Content\jquery-ui.min.css" />
+    <Content Include="Areas\Administration\Content\jquery-ui.structure.min.css" />
+    <Content Include="Areas\Administration\Content\jquery-ui.theme.min.css" />
+    <Content Include="Areas\Administration\Content\site.css" />
+    <Content Include="Areas\Administration\Scripts\jquery-ui.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Administration\Scripts\bootstrap.js" />
+    <Content Include="Areas\Administration\Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\Administration\Content\bootstrap.min.css.map" />
+    <Content Include="Areas\Administration\Content\bootstrap.css.map" />
+    <Content Include="Areas\Administration\Content\bootstrap-theme.min.css.map" />
+    <Content Include="Areas\Administration\Content\bootstrap-theme.css.map" />
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Cart\Views\web.config" />
@@ -275,6 +292,20 @@
     <Content Include="Areas\Cart\Views\Cart\_AddressPartial.cshtml" />
     <Content Include="Areas\Cart\Views\Cart\_ConfirmPartial.cshtml" />
     <Content Include="Areas\Cart\Views\Cart\DisplayTemplates\Decimal.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administration\Views\Collection\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\Decimal.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\Bool.cshtml" />
+    <Content Include="Areas\Administration\Views\Collection\Create.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\TextArea.cshtml" />
+    <Content Include="Areas\Administration\Views\Collection\Edit.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\Percent.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\OrderStatus.cshtml" />
+    <Content Include="Areas\Administration\Views\Order\DisplayTemplates\DateTime.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -327,14 +358,13 @@
     <Content Include="Views\Shared\DisplayTemplates\Decimal.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Home\_CategoriesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Areas\Cart\Models\" />
     <Folder Include="Areas\Cart\Views\Shared\" />
-    <Folder Include="Content\Images\" />
+    <Folder Include="Content\Images\Collections\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

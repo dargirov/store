@@ -1,0 +1,8 @@
+﻿@model IEnumerable<OnlineStore.Web.ViewModels.Home.CategoriesViewModel>
+
+<ol>
+    @foreach (var category in Model)
+    {
+        <li>@Html.ActionLink(category.Name, "Category", "Home", new { id = category.Acronym }, null)</li>
+       }
+</ol>

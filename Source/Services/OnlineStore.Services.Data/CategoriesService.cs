@@ -1,5 +1,6 @@
 ﻿namespace OnlineStore.Services.Data
 {
+    using System;
     using System.Linq;
 
     using OnlineStore.Data.Common;
@@ -18,8 +19,15 @@
         {
             return this.categories
                 .All()
-                .Where(c => c.IsActive)
                 .OrderBy(x => x.Name);
+        }
+
+        public Category GetByAcronym(string acronym)
+        {
+            return this.categories
+                .All()
+                .Where(c => c.Acronym == acronym)
+                .FirstOrDefault();
         }
     }
 }

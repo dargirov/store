@@ -1,0 +1,112 @@
+﻿@model OnlineStore.Web.Areas.Administration.ViewModels.Collection.CreateViewModel
+@{
+    ViewBag.Title = "Създаване на колекция";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Начало", "Index", "Administration", new { area = "Administration" }, null)</li>
+        <li>@Html.ActionLink("Колекции", "Index", "Collection", new { area = "Administration" }, null)</li>
+        <li class="active">Създаване</li>
+    </ol>
+</div>
+
+@using (Html.BeginForm("Create", "Collection", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    if (!Html.ViewData.ModelState.IsValid)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert">
+                    @Html.ValidationSummary()
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            @Html.LabelFor(c => c.Name)
+            @Html.EditorFor(c => c.Name)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            @Html.LabelFor(c => c.ShortDescription)
+            @Html.EditorFor(c => c.ShortDescription)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            @Html.LabelFor(c => c.Description)
+            @Html.EditorFor(c => c.Description)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.Discount)
+            <input type="range" min="0" max="100" value="50" step="1" name="Discount" id="Discount" class="form-control">
+        </div>
+        <div class="col-md-2" id="discount-value">
+            50%
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(c => c.DateStart)
+            <input type="text" name="DateStart" id="DateStart" class="form-control">
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(c => c.DateEnd)
+            <input type="text" name="DateEnd" id="DateEnd" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label for="File">Изображение</label>
+            <input type="file" name="File" id="File" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(c => c.CategoryId)
+            <select name="CategoryId" id="CategoryId" class="form-control">
+                @foreach (var category in Model.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="Добави" class="btn btn-primary">
+        </div>
+    </div>
+}
+
+@section scripts {
+
+    <script>
+        $(function () {
+
+            $("#DateStart").datepicker();
+            $("#DateEnd").datepicker();
+
+            $('#Discount').on('change', discountSliderChange);
+            function discountSliderChange(e) {
+                $('#discount-value').html($(this).val() + '%');
+            }
+
+        });
+    </script>
+
+}

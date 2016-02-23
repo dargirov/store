@@ -12,11 +12,12 @@
     public class HomeController : BaseController
     {
         private readonly ICollectionsService collections;
+        private readonly ICategoriesService categories;
 
-        public HomeController(ICollectionsService collections)
+        public HomeController(ICollectionsService collections, ICategoriesService categories)
         {
-            var categories = base.GetCategories();
             this.collections = collections;
+            this.categories = categories;
         }
 
         public ActionResult Index()
@@ -26,32 +27,24 @@
             return this.View(viewModel);
         }
 
-        //private readonly IJokesService jokes;
-        //private readonly ICategoriesService jokeCategories;
+        public ActionResult Category(string id)
+        {
+            var category = this.categories.GetByAcronym(id);
+            if (category == null)
+            {
+                return this.RedirectToAction("Index");
+            }
 
-        //public HomeController(
-        //    IJokesService jokes,
-        //    ICategoriesService jokeCategories)
-        //{
-        //    this.jokes = jokes;
-        //    this.jokeCategories = jokeCategories;
-        //}
+            var viewModel = this.collections.GetActive().Where(c => c.CategoryId == category.Id).To<IndexViewModel>().ToList();
 
-        //public ActionResult Index()
-        //{
-        //    var jokes = this.jokes.GetRandomJokes(3).To<JokeViewModel>().ToList();
-        //    var categories =
-        //        this.Cache.Get(
-        //            "categories",
-        //            () => this.jokeCategories.GetAll().To<JokeCategoryViewModel>().ToList(),
-        //            30 * 60);
-        //    var viewModel = new IndexViewModel
-        //    {
-        //        Jokes = jokes,
-        //        Categories = categories
-        //    };
+            return this.View("Index", viewModel);
+        }
 
-        //    return this.View(viewModel);
-        //}
+        [ChildActionOnly]
+        public ActionResult GetCategories()
+        {
+            var viewModel = this.categories.GetAll().Where(c => c.IsActive).To<CategoriesViewModel>().ToList();
+            return this.PartialView("_CategoriesPartial", viewModel);
+        }
     }
 }

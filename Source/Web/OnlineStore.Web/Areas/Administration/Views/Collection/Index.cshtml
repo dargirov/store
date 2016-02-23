@@ -1,0 +1,122 @@
+﻿@model IEnumerable<OnlineStore.Web.Areas.Administration.ViewModels.Collection.IndexViewModel>
+@{
+    ViewBag.Title = "Колекции";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Начало", "Index", "Administration", new { area = "Administration" }, null)</li>
+        <li class="active">Колекции</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.ActionLink("Добави", "Create", "Collection", new { area = "Administration" }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-bordered table-striped table-hover table-responsive table-condensed">
+        <tr>
+            <th>ID</th>
+            <th>Име</th>
+            <th>Кратко описание</th>
+            <th>Отстъпка</th>
+            <th>Активна</th>
+            <th>Начална дата</th>
+            <th>Крайна дата</th>
+            <th>Действия</th>
+        </tr>
+        @foreach (var collection in Model)
+        {
+            var className = "";
+            if (collection.IsDeleted)
+            {
+                className = "danger";
+            }
+            else if (!collection.IsActive)
+            {
+                className = "warning";
+            }
+            <tr class="@className">    
+                <td>@collection.Id</td>
+                <td>@collection.Name</td>
+                <td>@collection.ShortDescription</td>
+                <td>@Html.DisplayFor(c => collection.Discount, "Percent")</td>
+                <td>@Html.DisplayFor(c => collection.IsActive, "bool")</td>
+                <td>@Html.DisplayFor(c => collection.DateStart)</td>
+                <td>@Html.DisplayFor(c => collection.DateEnd)</td>
+                <td>
+                    @if (!collection.IsDeleted)
+                    {
+                        <div class="btn-group" role="group">
+                            @Html.ActionLink("Редакция", "Edit", "Collection", new { area = "Administration", id = collection.Id }, new { @class = "btn btn-default btn-xs" })
+                            @Html.ActionLink("X", "Delete", "Collection", new { area = "Administration", id = collection.Id }, new { @class = "btn btn-danger btn-xs delete-collection-btn" })
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div class="row">
+    <nav>
+        <ul class="pagination">
+            @{ 
+                var currentPage = (int)ViewBag.CurrentPage;
+                var totalPages = (int)ViewBag.TotalPages;
+            }
+            @if (currentPage > 1)
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Collection", new { id = currentPage - 1, area = "Administration" })" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                var classActive = "";
+                if (currentPage == i)
+                {
+                    classActive = "active";
+                }
+                <li class="@classActive">@Html.ActionLink(i.ToString(), "Index", "Collection", new { id = i, area = "Administration" }, null)</li>
+            }
+
+            @if ((int)ViewBag.CurrentPage < totalPages)
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Collection", new { id = currentPage + 1, area = "Administration" })" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+
+
+@section scripts {
+
+    <script>
+        $(function () {
+
+            $('.delete-collection-btn').on('click', deleteCollectionButtonClick);
+            function deleteCollectionButtonClick(e) {
+                var pressed = confirm('Изтрии тази колекция?');
+                if (pressed !== true) {
+                    e.preventDefault();
+                    return;
+                }
+
+            }
+
+        });
+    </script>
+
+}

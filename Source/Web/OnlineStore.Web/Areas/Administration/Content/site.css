@@ -1,0 +1,17 @@
+﻿#discount-value {
+    padding-top: 30px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.form .row {
+    margin: 20px 0;
+}
+
+.description-textarea {
+    height: 100px !important;
+}
+
+.collection-image {
+    max-height: 300px;
+}

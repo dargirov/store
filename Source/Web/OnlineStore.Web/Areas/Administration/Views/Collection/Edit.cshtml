@@ -1,0 +1,139 @@
+﻿@model OnlineStore.Web.Areas.Administration.ViewModels.Collection.CreateViewModel
+@{
+    ViewBag.Title = "Редактиране на колекция";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Начало", "Index", "Administration", new { area = "Administration" }, null)</li>
+        <li>@Html.ActionLink("Колекции", "Index", "Collection", new { area = "Administration" }, null)</li>
+        <li class="active">Редакция</li>
+    </ol>
+</div>
+
+@using (Html.BeginForm("Edit", "Collection", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    if (TempData["updated"] != null && (bool)TempData["updated"])
+    {
+        <div class="alert alert-success" role="alert">Промените са записани успешно</div>
+    }
+
+    if (!Html.ViewData.ModelState.IsValid)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert">
+                    @Html.ValidationSummary()
+                </div>
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-8">
+            @Html.LabelFor(c => c.Name)
+            @Html.EditorFor(c => c.Name)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            @Html.LabelFor(c => c.ShortDescription)
+            @Html.EditorFor(c => c.ShortDescription)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            @Html.LabelFor(c => c.Description)
+            @Html.EditorFor(c => c.Description)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(c => c.Discount)
+            <input type="range" min="0" max="100" value="@Model.Discount" step="1" name="Discount" id="Discount" class="form-control">
+        </div>
+        <div class="col-md-2" id="discount-value">
+            @Model.Discount%
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(c => c.DateStart)
+            <input type="text" value="@Model.DateStart" name="DateStart" id="DateStart" class="form-control">
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(c => c.DateEnd)
+            <input type="text" value="@Model.DateEnd" name="DateEnd" id="DateEnd" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label for="File">Изображение</label>
+            <input type="file" name="File" id="File" />
+        </div>
+    </div>
+
+    if (Model.Image != null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <img src="~/Content/Images/Collections/@Model.Id/@Model.Image" class="collection-image">
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(c => c.CategoryId)
+            <select name="CategoryId" id="CategoryId" class="form-control">
+                @foreach (var category in Model.Categories)
+                {
+                    var selected = "";
+                    if (category.Id == Model.CategoryId)
+                    {
+                        selected = " selected='selected'";
+                    }
+                    <option value="@category.Id"@selected>@category.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(c => c.IsActive)
+            <select name="IsActive" id="IsActive" class="form-control">
+                <option value="true"@(Model.IsActive == true ? " selected='selected'" : "")>Да</option>
+                <option value="false"@(Model.IsActive != true ? " selected='selected'" : "")>Не</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="Запази" class="btn btn-primary">
+        </div>
+    </div>
+}
+
+@section scripts {
+
+    <script>
+        $(function () {
+
+            $("#DateStart").datepicker();
+            $("#DateEnd").datepicker();
+
+            $('#Discount').on('change', discountSliderChange);
+            function discountSliderChange(e) {
+                $('#discount-value').html($(this).val() + '%');
+            }
+
+        });
+    </script>
+
+}

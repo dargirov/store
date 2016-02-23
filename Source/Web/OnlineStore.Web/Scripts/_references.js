@@ -1,5 +1,6 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="bootstrap.js" />
+/// <reference path="../areas/administration/scripts/bootstrap.min.js" />
+/// <reference path="../areas/administration/scripts/jquery-ui.min.js" />
 /// <reference path="jquery.colorbox.js" />
 /// <reference path="jquery.validate.min.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />

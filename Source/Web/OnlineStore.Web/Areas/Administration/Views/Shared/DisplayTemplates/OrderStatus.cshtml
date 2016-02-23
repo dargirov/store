@@ -1,0 +1,22 @@
+﻿@model OnlineStore.Data.Models.OrderStatus
+
+@{ 
+    var result = "";
+    switch (Model)
+    {
+        case OnlineStore.Data.Models.OrderStatus.Requested:
+            result = "<span class=\"label label-primary\">Заявена</span>";
+            break;
+        case OnlineStore.Data.Models.OrderStatus.Session:
+            result = "<span class=\"label label-default\">Сесия</span>";
+            break;
+        case OnlineStore.Data.Models.OrderStatus.Confirmed:
+            result = "<span class=\"label label-info\">Потвърдена</span>";
+            break;
+        case OnlineStore.Data.Models.OrderStatus.Finished:
+            result = "<span class=\"label label-success\">Приключена</span>";
+            break;
+    }
+}
+
+@Html.Raw(result)

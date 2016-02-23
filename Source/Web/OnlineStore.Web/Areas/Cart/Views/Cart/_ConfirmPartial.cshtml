@@ -11,13 +11,13 @@
             }
             @foreach (var orderProduct in Model.Preview.Products)
             {
-                Model.CurrentProductPrice = orderProduct.ProductVariant.PriceCustomer * orderProduct.Reserved;
-                Model.TotalPrice += Model.CurrentProductPrice;
+                var price = orderProduct.ProductVariant.PriceCustomer * orderProduct.Reserved;
+                totalPrice += price;
                 <li>
                     <span>@orderProduct.Product.Name</span>
                     <span>Размер: @orderProduct.ProductVariant.Internal</span>
                     <span>Количество: @orderProduct.Reserved</span>
-                    <span>Цена: @Html.DisplayFor(m => m.CurrentProductPrice)</span>
+                    <span>Цена: @Html.DisplayFor(m => price)</span>
                 </li>
             }
         </ol>
@@ -28,7 +28,7 @@
             <li>@Model.Address.Comment</li>
         </ul>
         <h3>Крайна цена</h3>
-        <strong class="cart-total-price">@Html.DisplayFor(m => m.TotalPrice)</strong>
+        <strong class="cart-total-price">@Html.DisplayFor(m => totalPrice)</strong>
     </div>
     <div>
         <a href="@Url.Action("Finish", "Cart", routeValues: new { area = "Cart" })" class="cart-next" data-step="3">Завърши &gt;&gt;</a>

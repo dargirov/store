@@ -10,6 +10,6 @@
 
         public IEnumerable<OrderProductViewModel> Products { get; set; }
 
-        public decimal CurrentProductPrice { get; set; }
+        //public decimal CurrentProductPrice { get; set; }
     }
 }
