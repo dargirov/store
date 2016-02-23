@@ -6,7 +6,7 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class IndexViewModel : IMapFrom<Order>, IHaveCustomMappings
+    public class DetailsViewModel : IMapFrom<Order>
     {
         public int Id { get; set; }
 
@@ -16,12 +16,8 @@
 
         public DateTime CreatedOn { get; set; }
 
-        public string FullName { get; set; }
+        public ApplicationUser User { get; set; }
 
-        public void CreateMappings(IMapperConfiguration configuration)
-        {
-            configuration.CreateMap<Order, IndexViewModel>()
-                .ForMember(x => x.FullName, opt => opt.MapFrom(x => x.User.FirstName + " " + x.User.LastName + " (" + x.User.Email + ")"));
-        }
+        public Address Address { get; set; }
     }
 }

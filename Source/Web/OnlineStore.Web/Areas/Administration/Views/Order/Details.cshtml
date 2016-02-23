@@ -1,0 +1,110 @@
+﻿@model OnlineStore.Web.Areas.Administration.ViewModels.Order.DetailsViewModel
+@{
+    ViewBag.Title = "Детайли за поръчка";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Начало", "Index", "Administration", new { area = "Administration" }, null)</li>
+        <li>@Html.ActionLink("Поръчки", "Index", "Order", new { area = "Administration" }, null)</li>
+        <li class="active">Детайли за поръчка</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Поръчка #@Model.Id</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 order-info">
+        <div>
+            <h4>@Html.DisplayFor(o => o.CreatedOn)</h4>
+        </div>
+        <div>
+            <h4>Потребител</h4>
+            <ul>
+                <li><i class="fa fa-at"></i> @Model.User.Email</li>
+                <li><i class="fa fa-male"></i> @Model.User.FirstName @Model.User.LastName</li>
+            </ul>
+        </div>
+        <div>
+            <h4>Адрес</h4>
+            <ul>
+                <li>гр./с. @Model.Address.City.Name</li>
+                <li>ул. @Model.Address.Street</li>
+                <li>тел. @Model.Address.Phone</li>
+                @if (@Model.Address.Comment != null)
+                {
+                    <li>коментар: @Model.Address.Comment</li>
+                }
+            </ul>
+        </div>
+        <div>
+            <h4>Статус</h4>
+            @Html.DisplayFor(o => Model.Status, "OrderStatus")
+            @Html.AntiForgeryToken()
+            <div>
+                <select name="OrderStatus" class="form-control">
+                    <option value="1">Сесия</option>
+                    <option value="2">Заявена</option>
+                    <option value="3">Потвърдена</option>
+                    <option value="4">Приключена</option>
+                </select>
+                <a href="#disabled" class="btn btn-warning" id="set-status-btn" data-order-id="@Model.Id" data-url="@Url.Action("UpdateStatus", "Order", new { area = "Administration" })">Промени</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <h4>Продукти</h4>
+        <ul id="order-products">
+            @{ 
+                decimal totalPrice = 0;
+            }
+
+            @foreach (var orderProduct in Model.Products)
+            {
+                var currentPrice = orderProduct.ProductVariant.PriceCustomer * orderProduct.Reserved;
+                totalPrice += currentPrice;
+                <li>
+                    <strong>@orderProduct.Product.Name</strong>
+                    <span>Размер: @orderProduct.ProductVariant.Internal</span>
+                    <span>Код доставчик: @orderProduct.ProductVariant.Supplier</span>
+                    <span>Количество: @orderProduct.Reserved</span>
+                    <span>Ед. цена: @Html.DisplayFor(x => orderProduct.ProductVariant.PriceCustomer)</span>
+                    <span>Цена: @Html.DisplayFor(x => currentPrice)</span>
+                </li>
+            }
+        </ul>
+        <h4>Крайна цена: @Html.DisplayFor(x => totalPrice)</h4>
+    </div>
+</div>
+
+@section scripts {
+    
+    <script>
+        $(function () {
+
+            $('#set-status-btn').on('click', setStatusButtonClick);
+            function setStatusButtonClick(e) {
+                e.preventDefault();
+                var orderId = $(this).data('order-id');
+                var url = $(this).data('url');
+                var newStatus = $(this).parent().find('select').val();
+                var token = $('input[name=__RequestVerificationToken]').val();
+
+                $.ajax({ method: 'POST', url: url, data: { id: orderId, status: newStatus, __RequestVerificationToken: token } })
+                    .done(function (response) {
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            alert(response.error);
+                        }
+                    });
+            }
+
+        });
+    </script>
+    
+}

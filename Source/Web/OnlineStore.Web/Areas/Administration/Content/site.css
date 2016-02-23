@@ -15,3 +15,43 @@
 .collection-image {
     max-height: 300px;
 }
+
+.orders-table ul {
+    font-size: 13px;
+}
+
+#order-products {
+    padding: 0;
+    list-style-type: none;
+}
+
+#order-products strong {
+    display: block;
+}
+
+#order-products span {
+    display: block;
+}
+
+#order-products li {
+    padding: 10px;
+}
+
+#order-products li:nth-child(2n+1) {
+    background-color: #F5F5F5;
+}
+
+.order-info div {
+    margin-bottom: 30px;
+}
+
+.order-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-info select {
+    width: 150px;
+    margin-top: 10px;
+    display: inline-block;
+}

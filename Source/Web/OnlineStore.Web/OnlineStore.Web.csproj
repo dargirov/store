@@ -203,6 +203,7 @@
     <Compile Include="Areas\Administration\Controllers\OrderController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Collection\CreateViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Collection\IndexViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Order\DetailsViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Order\IndexViewModel.cs" />
     <Compile Include="Areas\Cart\CartAreaRegistration.cs" />
     <Compile Include="Areas\Cart\Controllers\CartController.cs" />
@@ -306,6 +307,7 @@
     <Content Include="Areas\Administration\Views\Order\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\OrderStatus.cshtml" />
     <Content Include="Areas\Administration\Views\Order\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Areas\Administration\Views\Order\Details.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />

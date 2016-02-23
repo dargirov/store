@@ -1,7 +1,5 @@
 ﻿namespace OnlineStore.Data.Models
 {
-    using System.ComponentModel.DataAnnotations;
-
     public enum OrderStatus
     {
         Session = 1,
