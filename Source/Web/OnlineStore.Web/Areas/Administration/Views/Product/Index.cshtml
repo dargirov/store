@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<OnlineStore.Web.Areas.Administration.ViewModels.Product.IndexViewModel>
+@{
     ViewBag.Title = "Продукти";
 }
 <div class="row">
@@ -12,11 +13,32 @@
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-body">
-            @Html.ActionLink("Добави", "Create", "Product", new { area = "Administration" }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Добави", "Create", "Product", new { area = "Administration", id = (int)this.ViewBag.CollectionId }, new { @class = "btn btn-default" })
         </div>
     </div>
 </div>
 
 <div class="row">
-    <table class="table table-bordered table-striped table-hover table-responsive table-condensed"></table>
+    <table class="table table-bordered table-striped table-hover table-responsive table-condensed">
+        <tr>
+            <th>ID</th>
+            <th>Име</th>
+            <th>Размери</th>
+        </tr>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>
+                    <ul>
+                        @foreach (var variant in product.Variants)
+                        {
+                            <li>@variant.Internal</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </table>
 </div>

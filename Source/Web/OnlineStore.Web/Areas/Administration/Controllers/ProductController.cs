@@ -7,6 +7,7 @@
     using System.Web.Mvc;
     using Common;
     using Data.Models;
+    using Infrastructure.Mapping;
     using Services.Data;
     using ViewModels.Product;
     using Web.Controllers;
@@ -24,7 +25,9 @@
 
         public ActionResult Index(int id)
         {
-            return this.View();
+            var viewModel = this.products.GetByCollectionId(id).To<IndexViewModel>();
+            this.ViewBag.CollectionId = id;
+            return this.View(viewModel);
         }
 
         [HttpGet]

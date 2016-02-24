@@ -10,5 +10,7 @@
         Product GetById(int id);
 
         int Create(Product product);
+
+        IQueryable<Product> GetByCollectionId(int collectionId);
     }
 }

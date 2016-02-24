@@ -207,6 +207,7 @@
     <Compile Include="Areas\Administration\ViewModels\Order\DetailsViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Order\IndexViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Product\CreateViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Product\IndexViewModel.cs" />
     <Compile Include="Areas\Cart\CartAreaRegistration.cs" />
     <Compile Include="Areas\Cart\Controllers\CartController.cs" />
     <Compile Include="Areas\Cart\ViewModels\Cart\AddressViewModel.cs" />

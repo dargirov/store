@@ -36,5 +36,13 @@
             return this.products
                 .GetById(id);
         }
+
+        public IQueryable<Product> GetByCollectionId(int collectionId)
+        {
+            return this.products
+                .All()
+                .Where(p => p.CollectionId == collectionId)
+                .OrderByDescending(p => p.Id);
+        }
     }
 }
