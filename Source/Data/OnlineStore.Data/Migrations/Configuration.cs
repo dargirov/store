@@ -37,14 +37,14 @@
                 userManager.AddToRole(user.Id, GlobalConstants.AdministratorRoleName);
             }*/
 
-            if (!context.Collections.Any())
-            {
-                var categoryList = this.GenerateCategories(context);
-                var collectionList = this.GenerateCollections(context, categoryList);
-                var productList = this.GenerateProducts(context, collectionList);
-                this.GenerateProductVariants(context, productList);
-                this.GenerateCities(context);
-            }
+            //if (!context.Collections.Any())
+            //{
+            //    var categoryList = this.GenerateCategories(context);
+            //    var collectionList = this.GenerateCollections(context, categoryList);
+            //    var productList = this.GenerateProducts(context, collectionList);
+            //    this.GenerateProductVariants(context, productList);
+            //    this.GenerateCities(context);
+            //}
         }
 
         private void GenerateCities(ApplicationDbContext context)

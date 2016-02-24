@@ -23,6 +23,9 @@
                 return this.HttpNotFound();
             }
 
+            var related = this.products.GetByCollectionId(viewModel.CollectionId).Where(p => p.Id != viewModel.Id).ToList();
+            viewModel.RelatedProducts = related;
+
             return this.View(viewModel);
         }
     }

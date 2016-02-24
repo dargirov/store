@@ -35,7 +35,7 @@
             var order = this.GetOrderFromSession();
             if (order == null)
             {
-                return this.HttpNotFound();
+                return this.PartialView("_EmptyPartial");
             }
 
             var viewModel = this.Mapper.Map<PreviewViewModel>(order);
@@ -118,6 +118,7 @@
                 }
             }
 
+            this.Session.Remove("orderId");
             this.orders.Update(order);
 
             return this.RedirectToAction("Details", "Order", new { id = order.Id, area = string.Empty });

@@ -16,6 +16,12 @@
                 namespaces: new[] { "OnlineStore.Web.Controllers" });
 
             routes.MapRoute(
+                name: "Order",
+                url: "Order/{action}/{id}",
+                defaults: new { controller = "Order", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "OnlineStore.Web.Controllers" });
+
+            routes.MapRoute(
                 name: "Collections",
                 url: "Collection/{acronym}",
                 defaults: new { controller = "Collection", action = "Index" },

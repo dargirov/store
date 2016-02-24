@@ -313,6 +313,7 @@
     <Content Include="Areas\Administration\Views\Order\Details.cshtml" />
     <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Cart\Views\Shared\_EmptyPartial.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -370,7 +371,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Cart\Models\" />
-    <Folder Include="Areas\Cart\Views\Shared\" />
     <Folder Include="Content\Images\Collections\" />
     <Folder Include="Content\Images\Products\" />
     <Folder Include="Views\Base\" />

@@ -6,6 +6,8 @@
 
     public class IndexViewModel : IMapFrom<Data.Models.Collection>
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string Acronym { get; set; }

@@ -98,8 +98,8 @@
     <script>
         $(function () {
 
-            $("#DateStart").datepicker();
-            $("#DateEnd").datepicker();
+            $("#DateStart").datepicker({ dateFormat: 'yy-mm-dd' });
+            $("#DateEnd").datepicker({ dateFormat: 'yy-mm-dd' });
 
             $('#Discount').on('change', discountSliderChange);
             function discountSliderChange(e) {

@@ -1,12 +1,12 @@
 ﻿@model OnlineStore.Web.ViewModels.Product.IndexViewModel
 <section id="product" class="body-container">
     <div id="product-pictures">
-        <img src="http://www.secretzone.bg/static/pictures/3848/1001257_300.jpg">
-        <ul>
+        <img src="~/Content/Images/Products/@Model.Id/@Model.Images.FirstOrDefault().Name">
+        @*<ul>
             <li><img src="http://www.secretzone.bg/static/pictures/3848/1001257_80.jpg"></li>
             <li><img src="http://www.secretzone.bg/static/pictures/3848/1001257_80.jpg"></li>
             <li><img src="http://www.secretzone.bg/static/pictures/3848/1001257_80.jpg"></li>
-        </ul>
+        </ul>*@
     </div>
     <div id="product-description">
         <h1>@Model.Name</h1>
@@ -52,13 +52,14 @@
 <section id="related-products">
     <h1>Подобни продукти</h1>
     <ul>
-        @for (int i = 0; i < 5; i++)
+        @foreach (var product in Model.RelatedProducts)
         {
+            var priceCustomer = product.Variants.FirstOrDefault().PriceCustomer;
         <li>
             <article itemscope="" itemtype="http://schema.org/Product" class="product-box related-products">
-                <a href="product.php" title="" itemprop="url"><img src="http://www.secretzone.bg/static/pictures/3841/1001576_300.jpg" alt="" itemprop="image"></a>
-                <h1 itemprop="name">Елегантна рокля без ръкави в розов цвят от Figl</h1>
-                <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="1000.00">1,000.00</span>
+                <a href="@Url.Action("Index", "Product", new { area = string.Empty, acronym = product.Acronym })" title="" itemprop="url"><img src="~/Content/Images/Products/@product.Id/@product.Images.FirstOrDefault().Name" alt="" itemprop="image"></a>
+                <h1 itemprop="name">@product.Name</h1>
+                <span itemprop="priceCurrency" content="USD">$</span><span itemprop="price" content="@priceCustomer">@Html.DisplayFor(p => priceCustomer)</span>
             </article>
         </li>
         }

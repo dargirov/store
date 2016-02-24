@@ -4,7 +4,7 @@
 }
 
 <section id="collection-details">
-    <div><img src="@Model.Image"></div>
+    <div><img src="~/Content/Images/Collections/@Model.Id/@Model.Image"></div>
     <div>
         <h1>@Model.Name - @Model.ShortDescription</h1>
         <strong>@Model.Description</strong>
@@ -34,7 +34,7 @@
         @foreach (var product in Model.Products)
         {
         <article itemscope="" itemtype="http://schema.org/Product" class="product-box">
-            <a href="@Url.Action(null, "Product", new { acronym = product.Acronym })" title="" itemprop="url"><img src="http://www.secretzone.bg/static/pictures/3841/1001576_300.jpg" alt="" itemprop="image"></a>
+            <a href="@Url.Action(null, "Product", new { acronym = product.Acronym })" title="" itemprop="url"><img src="~/Content/Images/Products/@product.Id/@product.Images.FirstOrDefault().Name" alt="" itemprop="image"></a>
             <h1 itemprop="name">@product.Name</h1>
             <span itemprop="priceCurrency" content="BGN">лв</span>
             <span itemprop="price" content="@product.Variants.FirstOrDefault().PriceCustomer">@Html.DisplayFor(m => product.Variants.FirstOrDefault().PriceCustomer)</span>
