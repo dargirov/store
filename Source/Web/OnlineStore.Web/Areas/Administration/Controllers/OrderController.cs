@@ -10,6 +10,7 @@
     using ViewModels.Order;
     using Web.Controllers;
 
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class OrderController : BaseController
     {
         private IOrdersService orders;

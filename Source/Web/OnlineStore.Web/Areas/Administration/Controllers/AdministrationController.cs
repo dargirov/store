@@ -2,15 +2,15 @@
 {
     using System.Web.Mvc;
 
-    using OnlineStore.Common;
-    using OnlineStore.Web.Controllers;
+    using Common;
+    using Web.Controllers;
 
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class AdministrationController : BaseController
     {
         public ActionResult Index()
         {
-            return null;
+            return this.RedirectToAction("Index", "Collection", new { area = "Administration" });
         }
     }
 }

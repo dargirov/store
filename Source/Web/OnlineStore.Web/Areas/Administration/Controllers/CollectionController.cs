@@ -10,6 +10,7 @@
     using ViewModels.Collection;
     using Web.Controllers;
 
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class CollectionController : BaseController
     {
         private readonly ICollectionsService collections;

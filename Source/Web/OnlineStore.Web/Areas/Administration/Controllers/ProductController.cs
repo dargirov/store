@@ -12,6 +12,7 @@
     using ViewModels.Product;
     using Web.Controllers;
 
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public class ProductController : BaseController
     {
         private readonly IProductsService products;
