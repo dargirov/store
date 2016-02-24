@@ -64,8 +64,6 @@
     <Compile Include="Category.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Collection.cs" />
-    <Compile Include="Joke.cs" />
-    <Compile Include="JokeCategory.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderProduct.cs" />
     <Compile Include="OrderStatus.cs" />
