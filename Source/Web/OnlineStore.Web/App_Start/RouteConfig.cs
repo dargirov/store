@@ -12,7 +12,8 @@
             routes.MapRoute(
                 name: "Products",
                 url: "Product/{acronym}",
-                defaults: new { controller = "Product", action = "Index" });
+                defaults: new { controller = "Product", action = "Index" },
+                namespaces: new[] { "OnlineStore.Web.Controllers" });
 
             routes.MapRoute(
                 name: "Collections",

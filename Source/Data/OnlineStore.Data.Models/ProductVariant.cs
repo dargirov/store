@@ -1,7 +1,7 @@
 ﻿namespace OnlineStore.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using OnlineStore.Data.Common.Models;
+    using Common.Models;
 
     public class ProductVariant : BaseModel<int>
     {

@@ -1,0 +1,121 @@
+﻿@model OnlineStore.Web.Areas.Administration.ViewModels.Product.CreateViewModel
+@{
+    ViewBag.Title = "Добавяне на продукт";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Начало", "Index", "Administration", new { area = "Administration" }, null)</li>
+        <li>@Html.ActionLink("Колекция", "Index", "Collection", new { area = "Administration", id = Model.CollectionId }, null)</li>
+        <li class="active">Продукти</li>
+    </ol>
+</div>
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(p => p.CollectionId)
+
+    if (!Html.ViewData.ModelState.IsValid)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert">
+                    @Html.ValidationSummary()
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(p => p.Name)
+            @Html.EditorFor(p => p.Name)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(p => p.Description)
+            @Html.EditorFor(p => p.Description)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 id="product-variants-title">Варианти</h3>
+            <a href="#disabled" class="btn btn-default" id="add-new-variant-btn">Добави</a>
+        </div>
+    </div>
+
+    <div id="product-variants-container">
+        <div class="row product-variant-row" data-number="0">
+            <div class="col-md-3">
+                <label>
+                    Размер:
+                    <input type="text" name="Variants[0].Internal" class="form-control">
+                </label>
+            </div>
+            <div class="col-md-3">
+                <label>
+                    Код на доставчик:
+                    <input type="text" name="Variants[0].Supplier" class="form-control">
+                </label>
+            </div>
+            <div class="col-md-2">
+                <label>
+                    Цена клиент:
+                    <input type="text" name="Variants[0].PriceCustomer" class="form-control">
+                </label>
+            </div>
+            <div class="col-md-2">
+                <label>
+                    Цена MRSP:
+                    <input type="text" name="Variants[0].PriceMrsp" class="form-control">
+                </label>
+            </div>
+            <div class="col-md-2">
+                <label>
+                    Количество:
+                    <input type="number" name="[0].Quantity" class="form-control">
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label for="File">Изображение</label>
+            <input type="file" name="File" id="File">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" value="Добави">
+        </div>
+    </div>
+}
+
+@section scripts {
+    
+    <script>
+        $(function () {
+
+            $('#add-new-variant-btn').on('click', addVariantButtonClick);
+            function addVariantButtonClick(e) {
+                e.preventDefault();
+                var $lastVariant = $('#product-variants-container').find('.product-variant-row:last-of-type');
+                var number = parseInt($lastVariant.data('number'));
+                var html = $lastVariant.html();
+                var search = '[' + number + ']';
+                var replace = '[' + (number + 1) + ']';
+                html = html.split(search).join(replace);
+                var outerHtml = '<div class="row product-variant-row" data-number="' + (number + 1) + '">' + html + '</div>';
+                $('#product-variants-container').append(outerHtml);
+            }
+
+        });
+    </script>
+        
+}

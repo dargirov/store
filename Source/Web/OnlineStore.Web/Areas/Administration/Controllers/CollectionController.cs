@@ -32,7 +32,7 @@
             var totalPages = (int)Math.Ceiling(allItemsCount / (decimal)itemsPerPage);
             var itemsToSkip = (page - 1) * itemsPerPage;
 
-            var collections = this.collections
+            var viewModel = this.collections
                 .GetAllWidthDeleted()
                 .OrderByDescending(x => x.CreatedOn)
                 .Skip(itemsToSkip)
@@ -42,7 +42,7 @@
             this.ViewBag.CurrentPage = page;
             this.ViewBag.TotalPages = totalPages;
 
-            return this.View(collections);
+            return this.View(viewModel);
         }
 
         [HttpGet]

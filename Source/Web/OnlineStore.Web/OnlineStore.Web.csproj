@@ -201,10 +201,12 @@
     <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
     <Compile Include="Areas\Administration\Controllers\CollectionController.cs" />
     <Compile Include="Areas\Administration\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Administration\Controllers\ProductController.cs" />
     <Compile Include="Areas\Administration\ViewModels\Collection\CreateViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Collection\IndexViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Order\DetailsViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\Order\IndexViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\Product\CreateViewModel.cs" />
     <Compile Include="Areas\Cart\CartAreaRegistration.cs" />
     <Compile Include="Areas\Cart\Controllers\CartController.cs" />
     <Compile Include="Areas\Cart\ViewModels\Cart\AddressViewModel.cs" />
@@ -308,6 +310,8 @@
     <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\OrderStatus.cshtml" />
     <Content Include="Areas\Administration\Views\Order\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Areas\Administration\Views\Order\Details.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Product\Create.cshtml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
@@ -367,6 +371,7 @@
     <Folder Include="Areas\Cart\Models\" />
     <Folder Include="Areas\Cart\Views\Shared\" />
     <Folder Include="Content\Images\Collections\" />
+    <Folder Include="Content\Images\Products\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

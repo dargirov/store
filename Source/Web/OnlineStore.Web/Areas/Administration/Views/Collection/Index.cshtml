@@ -18,7 +18,7 @@
 </div>
 
 <div class="row">
-    <table class="table table-bordered table-striped table-hover table-responsive table-condensed">
+    <table class="table table-bordered table-striped table-hover table-responsive table-condensed table-collections">
         <tr>
             <th>ID</th>
             <th>Име</th>
@@ -53,6 +53,7 @@
                     {
                         <div class="btn-group" role="group">
                             @Html.ActionLink("Редакция", "Edit", "Collection", new { area = "Administration", id = collection.Id }, new { @class = "btn btn-default btn-xs" })
+                            @Html.ActionLink("Продукти", "Index", "Product", new { area = "Administration", id = collection.Id }, new { @class = "btn btn-default btn-xs" })
                             @Html.ActionLink("X", "Delete", "Collection", new { area = "Administration", id = collection.Id }, new { @class = "btn btn-danger btn-xs delete-collection-btn" })
                         </div>
                     }
@@ -87,7 +88,7 @@
                 <li class="@classActive">@Html.ActionLink(i.ToString(), "Index", "Collection", new { id = i, area = "Administration" }, null)</li>
             }
 
-            @if ((int)ViewBag.CurrentPage < totalPages)
+            @if (currentPage < totalPages)
             {
                 <li>
                     <a href="@Url.Action("Index", "Collection", new { id = currentPage + 1, area = "Administration" })" aria-label="Next">

@@ -14,5 +14,7 @@
         IQueryable<Order> GetByUserId(string userId);
 
         IQueryable<Order> GetAll();
+
+        int Count();
     }
 }

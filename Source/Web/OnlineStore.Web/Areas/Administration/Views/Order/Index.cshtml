@@ -9,13 +9,13 @@
     </ol>
 </div>
 
-<div class="row">
+@*<div class="row">
     <div class="panel panel-default">
         <div class="panel-body">
             <a href="" class="btn btn-default">Филтър</a>
         </div>
     </div>
-</div>
+</div>*@
 
 <div class="row">
     <table class="table table-bordered table-striped table-hover table-responsive table-condensed orders-table">
@@ -48,4 +48,41 @@
             </tr>
         }
     </table>
+</div>
+
+<div class="row">
+    <nav>
+        <ul class="pagination">
+            @{
+                var currentPage = (int)ViewBag.CurrentPage;
+                var totalPages = (int)ViewBag.TotalPages;
+            }
+            @if (currentPage > 1)
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Order", new { id = currentPage - 1, area = "Administration" })" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            }
+            @for (int i = 1; i <= totalPages; i++)
+            {
+                var classActive = "";
+                if (currentPage == i)
+                {
+                    classActive = "active";
+                }
+                <li class="@classActive">@Html.ActionLink(i.ToString(), "Index", "Order", new { id = i, area = "Administration" }, null)</li>
+            }
+
+            @if (currentPage < totalPages)
+            {
+                <li>
+                    <a href="@Url.Action("Index", "Order", new { id = currentPage + 1, area = "Administration" })" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
 </div>

@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Продукти";
+}
+<div class="row">
+    <ol class="breadcrumb">
+        <li>@Html.ActionLink("Начало", "Index", "Administration", new { area = "Administration" }, null)</li>
+        <li>@Html.ActionLink("Колекция", "Index", "Collection", new { area = "Administration" }, null)</li>
+        <li class="active">Продукти</li>
+    </ol>
+</div>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.ActionLink("Добави", "Create", "Product", new { area = "Administration" }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-bordered table-striped table-hover table-responsive table-condensed"></table>
+</div>

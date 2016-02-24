@@ -10,8 +10,8 @@
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(10)]
-        public string Extension { get; set; }
+        [MaxLength(50)]
+        public string ContentType { get; set; }
 
         public int ProductId { get; set; }
 

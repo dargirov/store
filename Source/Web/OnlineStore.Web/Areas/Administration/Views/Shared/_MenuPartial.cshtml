@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#">Начало</a></li>
                 <li><a href="#">Категории</a></li>
-                <li class="@(controllerName == "Collection" ? "active" : "")">@Html.ActionLink("Колекции", "Index", "Collection", new { area = "Administration" }, null)</li>
+                <li class="@(controllerName == "Collection" || controllerName == "Product" ? "active" : "")">@Html.ActionLink("Колекции", "Index", "Collection", new { area = "Administration" }, null)</li>
                 <li class="@(controllerName == "Order" ? "active" : "")">@Html.ActionLink("Поръчки", "Index", "Order", new { area = "Administration" }, null)</li>
                 <li><a href="#">Потребители</a></li>
             </ul>

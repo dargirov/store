@@ -59,5 +59,12 @@
                 .All()
                 .OrderByDescending(o => o.Id);
         }
+
+        public int Count()
+        {
+            return this.orders
+                .All()
+                .Count();
+        }
     }
 }
