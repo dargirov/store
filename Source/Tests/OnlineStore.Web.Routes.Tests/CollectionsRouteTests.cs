@@ -4,20 +4,20 @@
 
     using MvcRouteTester;
 
-    using OnlineStore.Web.Controllers;
+    using Controllers;
 
     using NUnit.Framework;
 
     [TestFixture]
-    public class JokesRouteTests
+    public class CollectionsRouteTests
     {
         [Test]
-        public void TestRouteById()
+        public void TestRouteByAcronym()
         {
-            const string Url = "/Joke/Mjc2NS4xMjMxMjMxMzEyMw==";
+            const string Url = "/Collection/nife-963";
             var routeCollection = new RouteCollection();
             RouteConfig.RegisterRoutes(routeCollection);
-            routeCollection.ShouldMap(Url).To<JokesController>(c => c.ById("Mjc2NS4xMjMxMjMxMzEyMw=="));
+            routeCollection.ShouldMap(Url).To<CollectionController>(c => c.Index("nife-963"));
         }
     }
 }
