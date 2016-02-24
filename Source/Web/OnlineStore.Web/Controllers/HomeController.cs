@@ -22,7 +22,7 @@
 
         public ActionResult Index()
         {
-            var viewModel = this.collections.GetActive().To<IndexViewModel>().ToList();
+            var viewModel = this.Cache.Get("collections", () => this.collections.GetActive().To<IndexViewModel>().ToList(), 30 * 60);
 
             return this.View(viewModel);
         }

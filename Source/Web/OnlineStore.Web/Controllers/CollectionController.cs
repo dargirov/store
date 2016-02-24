@@ -17,7 +17,7 @@
 
         public ActionResult Index(string acronym)
         {
-            var viewModel = this.collections.GetByAcronym(acronym).To<IndexViewModel>().FirstOrDefault();
+            var viewModel = this.Cache.Get("collection_" + acronym, () => this.collections.GetByAcronym(acronym).To<IndexViewModel>().FirstOrDefault(), 10 * 60);
             if (viewModel == null)
             {
                 return this.HttpNotFound();
