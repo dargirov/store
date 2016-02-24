@@ -26,9 +26,11 @@
                     <a href="@Url.Action("Index", "Home")"><i class="fa fa-paper-plane"></i> CoolStore</a>
                 </li>
                 <li>
-                    <form>
+                    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
                         <input type="search" name="search"><span><a href="#"><i class="fa fa-search"></i></a></span>
-                    </form>
+                    }
                 </li>
             </ul>
         </div>
@@ -63,9 +65,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/colorbox")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
-    <!--<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>-->
     <script>
 		$(function(){
 

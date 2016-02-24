@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OnlineStore.Web.ViewModels.Collection.ProductViewModel>
+
+<section id="products-filter">
+    @if (Model.Count() == 0)
+    {
+        <h2 class="section-title">Няма намерени продукти</h2>
+    }
+    else
+    {
+        <h2 class="section-title">Резултати</h2>
+    }
+</section>
+
+<section id="products">
+    <div>
+        @foreach (var product in Model)
+        {
+            <article itemscope="" itemtype="http://schema.org/Product" class="product-box">
+                <a href="@Url.Action(null, "Product", new { acronym = product.Acronym })" title="" itemprop="url"><img src="~/Content/Images/Products/@product.Id/@product.Images.FirstOrDefault().Name" alt="" itemprop="image"></a>
+                <h1 itemprop="name">@product.Name</h1>
+                <span itemprop="priceCurrency" content="BGN">лв</span>
+                <span itemprop="price" content="@product.Variants.FirstOrDefault().PriceCustomer">@Html.DisplayFor(m => product.Variants.FirstOrDefault().PriceCustomer)</span>
+                <span itemprop="highPrice">@Html.DisplayFor(m => product.Variants.FirstOrDefault().PriceMrsp)</span>
+                <div>
+                    <ul class="product-sizes">
+                        @*@foreach (var variant in product.Variants)
+                            {
+                                <li><a href="#disabled">@variant.Internal</a></li>
+                            }*@
+                    </ul>
+                    <a href="#" title="" class="product-box-buy"><i class="fa fa-shopping-bag"></i></a>
+                </div>
+            </article>
+        }
+    </div>
+</section>

@@ -44,5 +44,10 @@
                 .Where(p => p.CollectionId == collectionId)
                 .OrderByDescending(p => p.Id);
         }
+
+        public IQueryable<Product> GetAll()
+        {
+            return this.products.All();
+        }
     }
 }
